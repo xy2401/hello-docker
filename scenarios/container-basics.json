@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "container-basics",
+  "title": "单容器与进程基础",
+  "kind": "container",
+  "platform": "linux/amd64",
+  "timeoutMs": 180000,
+  "images": { "runtime": { "envFile": ".env.versions", "envKey": "BASH_IMAGE" } },
+  "imageRole": "runtime",
+  "command": ["bash", "-c", "printf 'container=hello-docker\\n'; test -r /proc/self/status && printf 'proc=readable\\n'; bash --version | head -n 1"],
+  "assertions": [
+    { "id": "container-output", "stream": "stdout", "op": "includes", "value": "container=hello-docker" },
+    { "id": "proc-readable", "stream": "stdout", "op": "includes", "value": "proc=readable" },
+    { "id": "bash-version", "stream": "stdout", "op": "includes", "value": "GNU bash, version 5.2" }
+  ],
+  "output": { "evidenceDir": "evidence/container-basics", "page": "docs/evidence/container-basics.md" }
+}

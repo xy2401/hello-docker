@@ -1,0 +1,107 @@
+:root {
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+  --doc-card-radius: 12px;
+  --doc-card-spacing: 24px;
+  --doc-action-text: #ffffff;
+  --doc-action-bg: #3451b2;
+  --doc-action-hover-bg: #2f46a7;
+  --doc-action-active-bg: #213582;
+  --doc-success-text: #047857;
+  --doc-success-bg: #047857;
+  --doc-success-hover-bg: #065f46;
+  --doc-success-active-bg: #064e3b;
+  --doc-danger-text: #b91c1c;
+  --doc-danger-bg: #b91c1c;
+  --doc-danger-hover-bg: #991b1b;
+  --doc-danger-active-bg: #7f1d1d;
+  --vp-button-brand-text: var(--doc-action-text);
+  --vp-button-brand-bg: var(--doc-action-bg);
+  --vp-button-brand-hover-text: var(--doc-action-text);
+  --vp-button-brand-hover-bg: var(--doc-action-hover-bg);
+  --vp-button-brand-active-text: var(--doc-action-text);
+  --vp-button-brand-active-bg: var(--doc-action-active-bg);
+}
+
+.dark {
+  --doc-success-text: #6ee7b7;
+  --doc-danger-text: #fca5a5;
+}
+
+.product-doc-page,
+.product-doc-page .VPDoc {
+  background-color: var(--vp-c-bg);
+}
+
+.VPDoc .vp-doc {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/* Markdown owns one wrapper div. Avoid resizing headings inside Vue widgets. */
+html .VPDoc .vp-doc > div > h1,
+html .VPDoc .vp-doc > div > .database-profile > .profile-hero h1 {
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+html .VPDoc .vp-doc > div > h2,
+html .VPDoc .vp-doc > div > .database-profile > h2 {
+  margin-top: 48px;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@media (min-width: 768px) {
+  html .VPDoc .vp-doc > div > h1,
+  html .VPDoc .vp-doc > div > .database-profile > .profile-hero h1 {
+    font-size: 32px;
+  }
+}
+
+.VPDoc .vp-doc > div > table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Only outer document widgets participate; nested cards keep their own rules. */
+html .VPDoc .vp-doc > div > :is(
+  .docker-tooling-container,
+  .lab-output,
+  .topology-diagram,
+  .message-trace,
+  .hw-card,
+  .profile-hero
+) {
+  margin-block: var(--doc-card-spacing);
+  border-color: var(--vp-c-divider);
+  border-radius: var(--doc-card-radius);
+}
+
+html :is(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 3px;
+}
+/* Long Chinese navigation stays reachable at tablet and compact desktop widths. */
+@media (max-width: 767.98px) {
+  html body { min-width: 0; }
+}
+
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  html .VPNav .VPNavBarMenu,
+  html .VPNav .VPNavBarExtra { display: none; }
+  html .VPNav .VPNavBarHamburger { display: flex; }
+  html .VPNav .VPNavScreen { display: block; }
+}
+
+@media (min-width: 1280px) and (max-width: 1439.98px) {
+  html .VPNavBar .VPNavBarSearch { padding-left: 12px; }
+  html .VPNavBar .VPNavBarMenuLink,
+  html .VPNavBar .VPNavBarMenuGroup > button { padding-inline: 6px; }
+}
+
+html .DocSearch-Button:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1) !important;
+  outline-offset: 3px;
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "image-build",
+  "title": "锁定基础镜像与多阶段构建",
+  "kind": "build",
+  "platform": "linux/amd64",
+  "timeoutMs": 300000,
+  "images": { "base": { "envFile": ".env.versions", "envKey": "BASH_IMAGE" } },
+  "build": { "context": "labs/build", "dockerfile": "labs/build/Dockerfile", "args": { "BASE_IMAGE": "base" } },
+  "command": ["bash", "-c", "cat /message.txt; test ! -e /build-only.txt && printf 'build-only=absent\\n'"],
+  "assertions": [
+    { "id": "copied-artifact", "stream": "stdout", "op": "includes", "value": "artifact=hello-docker" },
+    { "id": "stage-boundary", "stream": "stdout", "op": "includes", "value": "build-only=absent" }
+  ],
+  "output": { "evidenceDir": "evidence/image-build", "page": "docs/evidence/image-build.md" }
+}

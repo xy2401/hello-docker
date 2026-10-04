@@ -1,0 +1,41 @@
+name: Hello Docker evidence
+description: Execute a digest-locked scenario on a Linux Actions runner and collect traceable evidence
+inputs:
+  manifest:
+    description: Scenario JSON path relative to the checked-out source project
+    required: true
+  project-root:
+    description: Checked-out source project directory
+    default: '.'
+  output:
+    description: Artifact directory relative to project-root
+    required: true
+  tool-sha:
+    description: Full published tool commit SHA (required for same-repository/local action use)
+    default: ''
+outputs:
+  evidence-path:
+    description: Artifact directory; failed executions also retain diagnostic files
+    value: ${{ steps.paths.outputs.evidence-path }}
+runs:
+  using: composite
+  steps:
+    - id: paths
+      shell: bash
+      env:
+        ROOT: ${{ inputs.project-root }}
+        OUTPUT: ${{ inputs.output }}
+      run: |
+        printf 'evidence-path=%s/%s\n' "$ROOT" "$OUTPUT" >> "$GITHUB_OUTPUT"
+    - name: Validate, execute and render evidence
+      shell: bash
+      env:
+        TOOL_ROOT: ${{ github.action_path }}
+        HELLO_DOCKER_TOOL_SHA: ${{ inputs.tool-sha || github.action_ref }}
+        PROJECT_ROOT: ${{ inputs.project-root }}
+        MANIFEST: ${{ inputs.manifest }}
+        OUTPUT: ${{ inputs.output }}
+      run: |
+        node "$TOOL_ROOT/bin/hello-docker.mjs" check-manifest --root "$PROJECT_ROOT" --manifest "$MANIFEST"
+        node "$TOOL_ROOT/bin/hello-docker.mjs" run --root "$PROJECT_ROOT" --manifest "$MANIFEST" --output "$OUTPUT"
+        node "$TOOL_ROOT/bin/hello-docker.mjs" render-evidence --root "$PROJECT_ROOT" --manifest "$MANIFEST" --evidence "$OUTPUT"

@@ -1,0 +1,94 @@
+name: Verify Docker scenarios
+on:
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: Scenario to run (Linux amd64; execution uploads artifacts and publishes successful evidence)
+        type: choice
+        default: container-basics
+        options: [container-basics, image-build, compose-http, all]
+permissions:
+  contents: read
+concurrency:
+  group: hello-docker-evidence-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.select.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: select
+        env:
+          SCENARIO: ${{ inputs.scenario }}
+        run: |
+          selection=$(node scripts/select-scenarios.mjs "$SCENARIO")
+          printf 'matrix=%s\n' "$selection" >> "$GITHUB_OUTPUT"
+  execute:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        include: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: ./
+        with:
+          manifest: ${{ matrix.manifest }}
+          output: ${{ matrix.evidence }}
+          tool-sha: ${{ github.sha }}
+      - name: Preserve execution and failure artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-docker-${{ matrix.id }}-${{ github.run_id }}
+          path: ${{ matrix.evidence }}/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+  publish:
+    needs: [prepare, execute]
+    if: ${{ needs.execute.result == 'success' && github.ref_type == 'branch' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hello-docker-*-${{ github.run_id }}
+          path: .artifacts/downloads
+      - name: Validate and assemble evidence batch
+        env:
+          SCENARIO: ${{ inputs.scenario }}
+        run: |
+          node scripts/assemble-artifacts.mjs "$SCENARIO"
+      - name: Validate related docs before publication
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run docs:build
+      - name: Publish only verified evidence and pages
+        env:
+          HELLO_DOCKER_TOOL_SHA: ${{ github.sha }}
+        run: node bin/hello-docker.mjs publish-evidence --batch .artifacts/batch.json

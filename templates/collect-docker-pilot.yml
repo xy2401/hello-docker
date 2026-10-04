@@ -1,0 +1,82 @@
+name: Collect __SCENARIO__ with Hello Docker
+on:
+  workflow_dispatch:
+    inputs:
+      tool_sha:
+        description: Published full 40-character hello-docker commit SHA
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: __GROUP__
+  cancel-in-progress: false
+jobs:
+  execute:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Require an immutable tool reference
+        env:
+          TOOL_SHA: ${{ inputs.tool_sha }}
+        run: '[[ "$TOOL_SHA" =~ ^[a-f0-9]{40}$ ]]'
+      - uses: actions/checkout@v4
+        with:
+          repository: xy2401/hello-docker
+          ref: ${{ inputs.tool_sha }}
+          path: .hello-docker
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: ./.hello-docker
+        with:
+          manifest: __MANIFEST__
+          output: .artifacts/__SCENARIO__
+          tool-sha: ${{ inputs.tool_sha }}
+      - name: Preserve execution and failure artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-pilot-__SCENARIO__-${{ github.run_id }}
+          path: .artifacts/__SCENARIO__/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+  publish:
+    needs: execute
+    if: ${{ needs.execute.result == 'success' && github.ref_type == 'branch' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/checkout@v4
+        with:
+          repository: xy2401/hello-docker
+          ref: ${{ inputs.tool_sha }}
+          path: .hello-docker
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: docker-pilot-__SCENARIO__-${{ github.run_id }}
+          path: .artifacts/__SCENARIO__
+      - name: Validate evidence and build the generated pilot page
+        run: |
+          node .hello-docker/bin/hello-docker.mjs render-evidence --manifest __MANIFEST__ --evidence .artifacts/__SCENARIO__
+          cp .artifacts/__SCENARIO__/page.md __PREVIEW_PAGE__
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run docs:build
+      - name: Publish only verified pilot evidence
+        env:
+          HELLO_DOCKER_TOOL_SHA: ${{ inputs.tool_sha }}
+        run: node .hello-docker/bin/hello-docker.mjs publish-evidence --manifest __MANIFEST__ --evidence .artifacts/__SCENARIO__

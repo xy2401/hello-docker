@@ -1,0 +1,468 @@
+[
+  {
+    "id": "compose-http",
+    "title": "Compose 服务发现与健康检查",
+    "kind": "compose",
+    "platform": "linux/amd64",
+    "manifest": {
+      "schemaVersion": 1,
+      "id": "compose-http",
+      "title": "Compose 服务发现与健康检查",
+      "kind": "compose",
+      "platform": "linux/amd64",
+      "timeoutMs": 300000,
+      "images": {
+        "PYTHON_IMAGE": {
+          "envFile": ".env.versions",
+          "envKey": "PYTHON_IMAGE"
+        }
+      },
+      "compose": {
+        "file": "labs/compose/compose.yaml",
+        "exitService": "client"
+      },
+      "assertions": [
+        {
+          "id": "service-dns",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "http=200"
+        },
+        {
+          "id": "response-body",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "payload=hello-docker"
+        }
+      ],
+      "output": {
+        "evidenceDir": "evidence/compose-http",
+        "page": "docs/evidence/compose-http.md"
+      }
+    },
+    "images": {
+      "PYTHON_IMAGE": "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+    },
+    "output": {
+      "evidenceDir": "evidence/compose-http",
+      "page": "docs/evidence/compose-http.md"
+    },
+    "prepare": [
+      {
+        "phase": "engine",
+        "program": "docker",
+        "args": [
+          "version",
+          "--format",
+          "{{json .}}"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "pull",
+        "program": "docker",
+        "args": [
+          "pull",
+          "--platform",
+          "linux/amd64",
+          "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "image",
+        "program": "docker",
+        "args": [
+          "image",
+          "inspect",
+          "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "compose-version",
+        "program": "docker",
+        "args": [
+          "compose",
+          "version",
+          "--short"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "compose-config",
+        "program": "docker",
+        "args": [
+          "compose",
+          "--project-name",
+          "hello-docker-compose-http-preview",
+          "--file",
+          "<project-root>/labs/compose/compose.yaml",
+          "config",
+          "--format",
+          "json"
+        ],
+        "env": {
+          "PYTHON_IMAGE": "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+        }
+      }
+    ],
+    "execute": {
+      "phase": "execute",
+      "program": "docker",
+      "args": [
+        "compose",
+        "--project-name",
+        "hello-docker-compose-http-preview",
+        "--file",
+        "<project-root>/labs/compose/compose.yaml",
+        "up",
+        "--pull",
+        "never",
+        "--abort-on-container-exit",
+        "--exit-code-from",
+        "client"
+      ],
+      "env": {
+        "PYTHON_IMAGE": "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+      }
+    },
+    "cleanup": [
+      {
+        "phase": "cleanup",
+        "program": "docker",
+        "args": [
+          "compose",
+          "--project-name",
+          "hello-docker-compose-http-preview",
+          "--file",
+          "<project-root>/labs/compose/compose.yaml",
+          "down",
+          "--volumes",
+          "--remove-orphans",
+          "--timeout",
+          "10"
+        ],
+        "env": {
+          "PYTHON_IMAGE": "python:3.12-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a"
+        }
+      }
+    ],
+    "configs": [
+      {
+        "file": "scenarios/compose-http.json",
+        "text": "{\n  \"schemaVersion\": 1,\n  \"id\": \"compose-http\",\n  \"title\": \"Compose 服务发现与健康检查\",\n  \"kind\": \"compose\",\n  \"platform\": \"linux/amd64\",\n  \"timeoutMs\": 300000,\n  \"images\": { \"PYTHON_IMAGE\": { \"envFile\": \".env.versions\", \"envKey\": \"PYTHON_IMAGE\" } },\n  \"compose\": { \"file\": \"labs/compose/compose.yaml\", \"exitService\": \"client\" },\n  \"assertions\": [\n    { \"id\": \"service-dns\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"http=200\" },\n    { \"id\": \"response-body\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"payload=hello-docker\" }\n  ],\n  \"output\": { \"evidenceDir\": \"evidence/compose-http\", \"page\": \"docs/evidence/compose-http.md\" }\n}\n"
+      },
+      {
+        "file": "labs/compose/compose.yaml",
+        "text": "services:\n  server:\n    image: ${PYTHON_IMAGE:?PYTHON_IMAGE must be digest-locked}\n    platform: linux/amd64\n    command:\n      - python\n      - -u\n      - -c\n      - |\n        from http.server import BaseHTTPRequestHandler, HTTPServer\n        class Handler(BaseHTTPRequestHandler):\n            def do_GET(self):\n                self.send_response(200)\n                self.end_headers()\n                self.wfile.write(b'hello-docker')\n        HTTPServer(('0.0.0.0', 8080), Handler).serve_forever()\n    healthcheck:\n      test: [\"CMD\", \"python\", \"-c\", \"import urllib.request; assert urllib.request.urlopen('http://127.0.0.1:8080').status == 200\"]\n      interval: 2s\n      timeout: 2s\n      retries: 15\n  client:\n    image: ${PYTHON_IMAGE:?PYTHON_IMAGE must be digest-locked}\n    platform: linux/amd64\n    depends_on:\n      server:\n        condition: service_healthy\n    command:\n      - python\n      - -c\n      - |\n        import urllib.request\n        response = urllib.request.urlopen('http://server:8080', timeout=10)\n        payload = response.read().decode()\n        print('http=' + str(response.status))\n        print('payload=' + payload)\n        assert response.status == 200 and payload == 'hello-docker'\n"
+      }
+    ]
+  },
+  {
+    "id": "container-basics",
+    "title": "单容器与进程基础",
+    "kind": "container",
+    "platform": "linux/amd64",
+    "manifest": {
+      "schemaVersion": 1,
+      "id": "container-basics",
+      "title": "单容器与进程基础",
+      "kind": "container",
+      "platform": "linux/amd64",
+      "timeoutMs": 180000,
+      "images": {
+        "runtime": {
+          "envFile": ".env.versions",
+          "envKey": "BASH_IMAGE"
+        }
+      },
+      "imageRole": "runtime",
+      "command": [
+        "bash",
+        "-c",
+        "printf 'container=hello-docker\\n'; test -r /proc/self/status && printf 'proc=readable\\n'; bash --version | head -n 1"
+      ],
+      "assertions": [
+        {
+          "id": "container-output",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "container=hello-docker"
+        },
+        {
+          "id": "proc-readable",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "proc=readable"
+        },
+        {
+          "id": "bash-version",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "GNU bash, version 5.2"
+        }
+      ],
+      "output": {
+        "evidenceDir": "evidence/container-basics",
+        "page": "docs/evidence/container-basics.md"
+      }
+    },
+    "images": {
+      "runtime": "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+    },
+    "output": {
+      "evidenceDir": "evidence/container-basics",
+      "page": "docs/evidence/container-basics.md"
+    },
+    "prepare": [
+      {
+        "phase": "engine",
+        "program": "docker",
+        "args": [
+          "version",
+          "--format",
+          "{{json .}}"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "pull",
+        "program": "docker",
+        "args": [
+          "pull",
+          "--platform",
+          "linux/amd64",
+          "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "image",
+        "program": "docker",
+        "args": [
+          "image",
+          "inspect",
+          "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+        ],
+        "env": {}
+      }
+    ],
+    "execute": {
+      "phase": "execute",
+      "program": "docker",
+      "args": [
+        "run",
+        "--name",
+        "hello-docker-container-basics-preview",
+        "--label",
+        "io.hello-docker.run=preview",
+        "--platform",
+        "linux/amd64",
+        "--pull",
+        "never",
+        "--network",
+        "none",
+        "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324",
+        "bash",
+        "-c",
+        "printf 'container=hello-docker\\n'; test -r /proc/self/status && printf 'proc=readable\\n'; bash --version | head -n 1"
+      ],
+      "env": {}
+    },
+    "cleanup": [
+      {
+        "phase": "cleanup",
+        "program": "docker",
+        "args": [
+          "rm",
+          "--force",
+          "hello-docker-container-basics-preview"
+        ],
+        "env": {}
+      }
+    ],
+    "configs": [
+      {
+        "file": "scenarios/container-basics.json",
+        "text": "{\n  \"schemaVersion\": 1,\n  \"id\": \"container-basics\",\n  \"title\": \"单容器与进程基础\",\n  \"kind\": \"container\",\n  \"platform\": \"linux/amd64\",\n  \"timeoutMs\": 180000,\n  \"images\": { \"runtime\": { \"envFile\": \".env.versions\", \"envKey\": \"BASH_IMAGE\" } },\n  \"imageRole\": \"runtime\",\n  \"command\": [\"bash\", \"-c\", \"printf 'container=hello-docker\\\\n'; test -r /proc/self/status && printf 'proc=readable\\\\n'; bash --version | head -n 1\"],\n  \"assertions\": [\n    { \"id\": \"container-output\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"container=hello-docker\" },\n    { \"id\": \"proc-readable\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"proc=readable\" },\n    { \"id\": \"bash-version\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"GNU bash, version 5.2\" }\n  ],\n  \"output\": { \"evidenceDir\": \"evidence/container-basics\", \"page\": \"docs/evidence/container-basics.md\" }\n}\n"
+      }
+    ]
+  },
+  {
+    "id": "image-build",
+    "title": "锁定基础镜像与多阶段构建",
+    "kind": "build",
+    "platform": "linux/amd64",
+    "manifest": {
+      "schemaVersion": 1,
+      "id": "image-build",
+      "title": "锁定基础镜像与多阶段构建",
+      "kind": "build",
+      "platform": "linux/amd64",
+      "timeoutMs": 300000,
+      "images": {
+        "base": {
+          "envFile": ".env.versions",
+          "envKey": "BASH_IMAGE"
+        }
+      },
+      "build": {
+        "context": "labs/build",
+        "dockerfile": "labs/build/Dockerfile",
+        "args": {
+          "BASE_IMAGE": "base"
+        }
+      },
+      "command": [
+        "bash",
+        "-c",
+        "cat /message.txt; test ! -e /build-only.txt && printf 'build-only=absent\\n'"
+      ],
+      "assertions": [
+        {
+          "id": "copied-artifact",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "artifact=hello-docker"
+        },
+        {
+          "id": "stage-boundary",
+          "stream": "stdout",
+          "op": "includes",
+          "value": "build-only=absent"
+        }
+      ],
+      "output": {
+        "evidenceDir": "evidence/image-build",
+        "page": "docs/evidence/image-build.md"
+      }
+    },
+    "images": {
+      "base": "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+    },
+    "output": {
+      "evidenceDir": "evidence/image-build",
+      "page": "docs/evidence/image-build.md"
+    },
+    "prepare": [
+      {
+        "phase": "engine",
+        "program": "docker",
+        "args": [
+          "version",
+          "--format",
+          "{{json .}}"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "pull",
+        "program": "docker",
+        "args": [
+          "pull",
+          "--platform",
+          "linux/amd64",
+          "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "image",
+        "program": "docker",
+        "args": [
+          "image",
+          "inspect",
+          "bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "build",
+        "program": "docker",
+        "args": [
+          "build",
+          "--platform",
+          "linux/amd64",
+          "--network",
+          "none",
+          "--pull=false",
+          "--label",
+          "io.hello-docker.run=preview",
+          "--file",
+          "<project-root>/labs/build/Dockerfile",
+          "--tag",
+          "hello-docker-image-build:preview",
+          "--build-arg",
+          "BASE_IMAGE=bash:5.2@sha256:3bee76a96d86d5d2d5efc7c1c570e5a7c95db22348a26944e0e546fa174e3324",
+          "<project-root>/labs/build"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "built-image",
+        "program": "docker",
+        "args": [
+          "image",
+          "inspect",
+          "hello-docker-image-build:preview"
+        ],
+        "env": {}
+      }
+    ],
+    "execute": {
+      "phase": "execute",
+      "program": "docker",
+      "args": [
+        "run",
+        "--name",
+        "hello-docker-image-build-preview",
+        "--label",
+        "io.hello-docker.run=preview",
+        "--platform",
+        "linux/amd64",
+        "--pull",
+        "never",
+        "--network",
+        "none",
+        "hello-docker-image-build:preview",
+        "bash",
+        "-c",
+        "cat /message.txt; test ! -e /build-only.txt && printf 'build-only=absent\\n'"
+      ],
+      "env": {}
+    },
+    "cleanup": [
+      {
+        "phase": "cleanup",
+        "program": "docker",
+        "args": [
+          "rm",
+          "--force",
+          "hello-docker-image-build-preview"
+        ],
+        "env": {}
+      },
+      {
+        "phase": "cleanup",
+        "program": "docker",
+        "args": [
+          "image",
+          "rm",
+          "hello-docker-image-build:preview"
+        ],
+        "env": {}
+      }
+    ],
+    "configs": [
+      {
+        "file": "scenarios/image-build.json",
+        "text": "{\n  \"schemaVersion\": 1,\n  \"id\": \"image-build\",\n  \"title\": \"锁定基础镜像与多阶段构建\",\n  \"kind\": \"build\",\n  \"platform\": \"linux/amd64\",\n  \"timeoutMs\": 300000,\n  \"images\": { \"base\": { \"envFile\": \".env.versions\", \"envKey\": \"BASH_IMAGE\" } },\n  \"build\": { \"context\": \"labs/build\", \"dockerfile\": \"labs/build/Dockerfile\", \"args\": { \"BASE_IMAGE\": \"base\" } },\n  \"command\": [\"bash\", \"-c\", \"cat /message.txt; test ! -e /build-only.txt && printf 'build-only=absent\\\\n'\"],\n  \"assertions\": [\n    { \"id\": \"copied-artifact\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"artifact=hello-docker\" },\n    { \"id\": \"stage-boundary\", \"stream\": \"stdout\", \"op\": \"includes\", \"value\": \"build-only=absent\" }\n  ],\n  \"output\": { \"evidenceDir\": \"evidence/image-build\", \"page\": \"docs/evidence/image-build.md\" }\n}\n"
+      },
+      {
+        "file": "labs/build/Dockerfile",
+        "text": "ARG BASE_IMAGE\nFROM ${BASE_IMAGE} AS builder\nRUN printf 'artifact=hello-docker\\n' > /message.txt \\\n    && printf 'belongs to builder only\\n' > /build-only.txt\n\nFROM ${BASE_IMAGE}\nCOPY --from=builder /message.txt /message.txt\n"
+      }
+    ]
+  }
+]

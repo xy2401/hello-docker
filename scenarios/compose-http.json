@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "compose-http",
+  "title": "Compose 服务发现与健康检查",
+  "kind": "compose",
+  "platform": "linux/amd64",
+  "timeoutMs": 300000,
+  "images": { "PYTHON_IMAGE": { "envFile": ".env.versions", "envKey": "PYTHON_IMAGE" } },
+  "compose": { "file": "labs/compose/compose.yaml", "exitService": "client" },
+  "assertions": [
+    { "id": "service-dns", "stream": "stdout", "op": "includes", "value": "http=200" },
+    { "id": "response-body", "stream": "stdout", "op": "includes", "value": "payload=hello-docker" }
+  ],
+  "output": { "evidenceDir": "evidence/compose-http", "page": "docs/evidence/compose-http.md" }
+}
