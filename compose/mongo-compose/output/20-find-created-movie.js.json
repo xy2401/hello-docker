@@ -1,0 +1,11 @@
+{
+  "_id": {
+    "$oid": "000000000000000000000001"
+  },
+  "title": "MFlix insertOne business example",
+  "year": 2000,
+  "genres": [
+    "Drama"
+  ],
+  "plot": "A movie used to practice MongoDB business operations."
+}

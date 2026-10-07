@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "id": "mongo-compose",
+  "title": "MongoDB MFlix 业务语句",
+  "runtime": "mongosh",
+  "outputFormat": "mongodb-extended-json",
+  "compose": "compose.yaml",
+  "importScript": "scripts/import-samples.sh",
+  "runScript": "scripts/run.sh",
+  "sourceManifest": "source.json",
+  "summary": "output/summary.json",
+  "runtimeFiles": [
+    "scripts/meta.cjs",
+    "scripts/run-query.js",
+    "scripts/summarize.js",
+    "scripts/mflix-rules.js",
+    "scripts/query-utils.js"
+  ],
+  "licenseFile": "input/LICENSE",
+  "files": [
+    {
+      "id": "00-movie-count",
+      "title": "电影数量",
+      "input": "input/00-movie-count.js",
+      "output": "output/00-movie-count.js.json",
+      "operation": "estimatedDocumentCount",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "01-list-movies",
+      "title": "电影筛选、排序与分页",
+      "input": "input/01-list-movies.js",
+      "output": "output/01-list-movies.js.json",
+      "operation": "find",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "02-distinct-genres",
+      "title": "电影类别去重",
+      "input": "input/02-distinct-genres.js",
+      "output": "output/02-distinct-genres.js.json",
+      "operation": "distinct",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "03-find-movie",
+      "title": "按 ID 查询电影",
+      "input": "input/03-find-movie.js",
+      "output": "output/03-find-movie.js.json",
+      "operation": "findOne",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "04-insert-one",
+      "title": "创建一部电影",
+      "input": "input/04-insert-one.js",
+      "output": "output/04-insert-one.js.json",
+      "operation": "insertOne",
+      "database": "temporary",
+      "prepare": "empty"
+    },
+    {
+      "id": "05-insert-many",
+      "title": "批量创建电影",
+      "input": "input/05-insert-many.js",
+      "output": "output/05-insert-many.js.json",
+      "operation": "insertMany",
+      "database": "temporary",
+      "prepare": "empty"
+    },
+    {
+      "id": "06-update-one",
+      "title": "更新一部电影",
+      "input": "input/06-update-one.js",
+      "output": "output/06-update-one.js.json",
+      "operation": "updateOne",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "07-update-many",
+      "title": "批量更新电影",
+      "input": "input/07-update-many.js",
+      "output": "output/07-update-many.js.json",
+      "operation": "updateMany",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "08-delete-one",
+      "title": "删除一部电影",
+      "input": "input/08-delete-one.js",
+      "output": "output/08-delete-one.js.json",
+      "operation": "deleteOne",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "09-delete-many",
+      "title": "批量删除电影",
+      "input": "input/09-delete-many.js",
+      "output": "output/09-delete-many.js.json",
+      "operation": "deleteMany",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "10-find-one-and-delete",
+      "title": "返回并删除电影",
+      "input": "input/10-find-one-and-delete.js",
+      "output": "output/10-find-one-and-delete.js.json",
+      "operation": "findOneAndDelete",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "11-text-search",
+      "title": "普通文本查询",
+      "input": "input/11-text-search.js",
+      "output": "output/11-text-search.js.json",
+      "operation": "find",
+      "database": "temporary",
+      "prepare": "text-search"
+    },
+    {
+      "id": "12-comments-report",
+      "title": "电影最新评论与评论数量",
+      "input": "input/12-comments-report.js",
+      "output": "output/12-comments-report.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "13-year-report",
+      "title": "按年份统计电影与评分",
+      "input": "input/13-year-report.js",
+      "output": "output/13-year-report.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "14-director-report",
+      "title": "导演作品数量排名",
+      "input": "input/14-director-report.js",
+      "output": "output/14-director-report.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "15-search-movies",
+      "title": "MongoDB Search 组合查询",
+      "input": "input/15-search-movies.js",
+      "output": "output/15-search-movies.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix",
+      "requires": "search"
+    },
+    {
+      "id": "16-vector-search",
+      "title": "电影向量相似度查询",
+      "input": "input/16-vector-search.js",
+      "output": "output/16-vector-search.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix",
+      "requires": "vector-search",
+      "parameters": [
+        "queryVector"
+      ]
+    },
+    {
+      "id": "17-vector-hydration",
+      "title": "按检索 ID 补全电影信息",
+      "input": "input/17-vector-hydration.js",
+      "output": "output/17-vector-hydration.js.json",
+      "operation": "aggregate",
+      "database": "sample_mflix"
+    },
+    {
+      "id": "18-list-indexes",
+      "title": "列出电影集合索引",
+      "input": "input/18-list-indexes.js",
+      "output": "output/18-list-indexes.js.json",
+      "operation": "getIndexes",
+      "database": "temporary",
+      "prepare": "text-index"
+    },
+    {
+      "id": "19-text-index",
+      "title": "创建文本索引",
+      "input": "input/19-text-index.js",
+      "output": "output/19-text-index.js.json",
+      "operation": "createIndex",
+      "database": "temporary",
+      "prepare": "seed-three"
+    },
+    {
+      "id": "20-find-created-movie",
+      "title": "读取创建后的电影",
+      "input": "input/20-find-created-movie.js",
+      "output": "output/20-find-created-movie.js.json",
+      "operation": "findOne",
+      "database": "temporary",
+      "prepare": "created-movie"
+    },
+    {
+      "id": "21-find-updated-movie",
+      "title": "读取更新后的电影",
+      "input": "input/21-find-updated-movie.js",
+      "output": "output/21-find-updated-movie.js.json",
+      "operation": "findOne",
+      "database": "temporary",
+      "prepare": "updated-movie"
+    }
+  ],
+  "rulesScript": "scripts/mflix-rules.js"
+}

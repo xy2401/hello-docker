@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 3,
+  "runId": "20261007T144227Z-4564",
+  "id": "13-year-report",
+  "input": "13-year-report.js",
+  "status": "passed",
+  "startedAt": "2026-10-07T14:42:34.965Z",
+  "inputSha256": "8d0b07144186a1c9425f38b23c07326fc3b5e5cb9ce9df543548329cf3440d5f",
+  "metaSha256": "8f19a98cd53a7045ed2671a4c70d453c7ebc5b35c0312e1b688cb57c812d9394",
+  "runtimeSha256": {
+    "scripts/meta.cjs": "0bcca18e85325fe7add5623c24894028023d6bab1c0fb620edf64b65e244d4bc",
+    "scripts/run-query.js": "897dad4f34dbfded99c147f6a2b79fed3d39045581c5cfd3c1d461425af8fda3",
+    "scripts/summarize.js": "30c1ef1a219e34eebc851ab2627ae2e23895d471cc11db0a21a74b0e9a78ef47",
+    "scripts/mflix-rules.js": "283c5103d04507072046a048e3bb9556e0e4f84b221e8d2a3f881cf1f6156b5e",
+    "scripts/query-utils.js": "47aa190f6ec29149bfd4d6506b5f9c781d80ea89e278d4e235bce299c3f9b7e7"
+  },
+  "runnerSha256": "c1da40d36b53ae292192a9ef9d81972828a7b6ef7da04742e1768405bd7ea79a",
+  "sourceDatabase": "sample_mflix",
+  "preparationInputs": [],
+  "mongoDBVersion": "7.0.43",
+  "mongoshVersion": "2.12.0",
+  "sourceSnapshot": {
+    "movies": 21349,
+    "comments": 41079
+  },
+  "assertions": 4,
+  "finishedAt": "2026-10-07T14:42:35.031Z",
+  "output": "13-year-report.js.json",
+  "outputSha256": "3d10cd56afafaead11e9bbc1401c68d5045503c5d140026573a6cf2f0acaad8b",
+  "exitCode": 0,
+  "logs": {
+    "stdout": ".verification/13-year-report.js.stdout.txt",
+    "stdoutSha256": "075c584cdec7bf3076dc03d332bf6d1878ad6246bf1130e9e49ae9386e460657",
+    "stderr": ".verification/13-year-report.js.stderr.txt",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exitCodeSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  }
+}

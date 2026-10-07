@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 3,
+  "runId": "20261007T144227Z-4564",
+  "id": "01-list-movies",
+  "input": "01-list-movies.js",
+  "status": "passed",
+  "startedAt": "2026-10-07T14:42:29.322Z",
+  "inputSha256": "b4b4c427061f7d1614fd534afb424b338e1a6a781bcc4dc345d7b07115c6b8b2",
+  "metaSha256": "8f19a98cd53a7045ed2671a4c70d453c7ebc5b35c0312e1b688cb57c812d9394",
+  "runtimeSha256": {
+    "scripts/meta.cjs": "0bcca18e85325fe7add5623c24894028023d6bab1c0fb620edf64b65e244d4bc",
+    "scripts/run-query.js": "897dad4f34dbfded99c147f6a2b79fed3d39045581c5cfd3c1d461425af8fda3",
+    "scripts/summarize.js": "30c1ef1a219e34eebc851ab2627ae2e23895d471cc11db0a21a74b0e9a78ef47",
+    "scripts/mflix-rules.js": "283c5103d04507072046a048e3bb9556e0e4f84b221e8d2a3f881cf1f6156b5e",
+    "scripts/query-utils.js": "47aa190f6ec29149bfd4d6506b5f9c781d80ea89e278d4e235bce299c3f9b7e7"
+  },
+  "runnerSha256": "c1da40d36b53ae292192a9ef9d81972828a7b6ef7da04742e1768405bd7ea79a",
+  "sourceDatabase": "sample_mflix",
+  "preparationInputs": [],
+  "mongoDBVersion": "7.0.43",
+  "mongoshVersion": "2.12.0",
+  "sourceSnapshot": {
+    "movies": 21349,
+    "comments": 41079
+  },
+  "assertions": 3,
+  "finishedAt": "2026-10-07T14:42:29.359Z",
+  "output": "01-list-movies.js.json",
+  "outputSha256": "2d40630ebb5c4cfe1808f1e1de6d9c0908e547c526280d2b60e64038f2c375f9",
+  "exitCode": 0,
+  "logs": {
+    "stdout": ".verification/01-list-movies.js.stdout.txt",
+    "stdoutSha256": "4100ab96e32ae295f4131ebf6c8c800b92bda67023de32441982fe7fca76cb8a",
+    "stderr": ".verification/01-list-movies.js.stderr.txt",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exitCodeSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  }
+}

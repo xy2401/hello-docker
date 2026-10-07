@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 3,
+  "repository": "https://github.com/mongodb/sample-app-nodejs-mflix",
+  "commit": "1f7dcdba04f6212a5fd4842135973e28a0a2d741",
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "server/src/controllers/movieController.ts",
+      "sha256": "6ee445cee46e085dacefed6ec9c2fb4ffeda34dcf9ffae05fb119de2674f5ffd",
+      "hashScope": "upstream Git blob"
+    },
+    {
+      "path": "server/src/config/database.ts",
+      "sha256": "05327464340d7a62017514ab3029fd818516aa215f6e74337fe7acfda459e8b3",
+      "hashScope": "upstream Git blob"
+    },
+    {
+      "path": "server/src/utils/mongoQuery.ts",
+      "sha256": "7468d341116184e7a64e10731177c715d109158a82e5f3354f123e4d000547d0",
+      "hashScope": "upstream Git blob"
+    }
+  ],
+  "businessFunctions": [
+    "getAllMovies",
+    "getDistinctGenres",
+    "getMovieById",
+    "createMovie",
+    "createMoviesBatch",
+    "updateMovie",
+    "updateMoviesBatch",
+    "deleteMovie",
+    "deleteMoviesBatch",
+    "findAndDeleteMovie",
+    "searchMovies",
+    "vectorSearchMovies",
+    "getMoviesWithMostRecentComments",
+    "getMoviesByYearWithStats",
+    "getDirectorsWithMostMovies"
+  ],
+  "databaseStatementCount": 21,
+  "databaseStatements": [
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getAllMovies",
+      "method": "find",
+      "startLine": 137,
+      "endLine": 138,
+      "expression": "moviesCollection\n    .find(filter)",
+      "inputs": [
+        "01-list-movies.js",
+        "11-text-search.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getDistinctGenres",
+      "method": "distinct",
+      "startLine": 164,
+      "endLine": 164,
+      "expression": "moviesCollection.distinct(\"genres\")",
+      "inputs": [
+        "02-distinct-genres.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getMovieById",
+      "method": "findOne",
+      "startLine": 198,
+      "endLine": 198,
+      "expression": "moviesCollection.findOne({ _id: new ObjectId(id) })",
+      "inputs": [
+        "03-find-movie.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "createMovie",
+      "method": "insertOne",
+      "startLine": 227,
+      "endLine": 227,
+      "expression": "moviesCollection.insertOne(movieData)",
+      "inputs": [
+        "04-insert-one.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "createMovie",
+      "method": "findOne",
+      "startLine": 234,
+      "endLine": 236,
+      "expression": "moviesCollection.findOne({\n    _id: result.insertedId,\n  })",
+      "inputs": [
+        "20-find-created-movie.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "createMoviesBatch",
+      "method": "insertMany",
+      "startLine": 289,
+      "endLine": 289,
+      "expression": "moviesCollection.insertMany(moviesData)",
+      "inputs": [
+        "05-insert-many.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "updateMovie",
+      "method": "updateOne",
+      "startLine": 355,
+      "endLine": 358,
+      "expression": "moviesCollection.updateOne(\n    { _id: new ObjectId(id) },\n    { $set: sanitizedUpdate }\n  )",
+      "inputs": [
+        "06-update-one.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "updateMovie",
+      "method": "findOne",
+      "startLine": 368,
+      "endLine": 370,
+      "expression": "moviesCollection.findOne({\n    _id: new ObjectId(id),\n  })",
+      "inputs": [
+        "21-find-updated-movie.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "updateMoviesBatch",
+      "method": "updateMany",
+      "startLine": 458,
+      "endLine": 460,
+      "expression": "moviesCollection.updateMany(processedFilter, {\n    $set: sanitizedUpdate,\n  })",
+      "inputs": [
+        "07-update-many.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "deleteMovie",
+      "method": "deleteOne",
+      "startLine": 495,
+      "endLine": 495,
+      "expression": "moviesCollection.deleteOne({ _id: new ObjectId(id) })",
+      "inputs": [
+        "08-delete-one.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "deleteMoviesBatch",
+      "method": "deleteMany",
+      "startLine": 568,
+      "endLine": 568,
+      "expression": "moviesCollection.deleteMany(processedFilter)",
+      "inputs": [
+        "09-delete-many.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "findAndDeleteMovie",
+      "method": "findOneAndDelete",
+      "startLine": 605,
+      "endLine": 607,
+      "expression": "moviesCollection.findOneAndDelete({\n    _id: new ObjectId(id),\n  })",
+      "inputs": [
+        "10-find-one-and-delete.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "searchMovies",
+      "method": "aggregate",
+      "startLine": 804,
+      "endLine": 804,
+      "expression": "moviesCollection.aggregate(pipeline)",
+      "inputs": [
+        "15-search-movies.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "vectorSearchMovies",
+      "method": "aggregate",
+      "startLine": 887,
+      "endLine": 887,
+      "expression": "embeddedMoviesCollection.aggregate(vectorSearchPipeline)",
+      "inputs": [
+        "16-vector-search.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "vectorSearchMovies",
+      "method": "aggregate",
+      "startLine": 942,
+      "endLine": 942,
+      "expression": "moviesCollection.aggregate(moviesPipeline)",
+      "inputs": [
+        "17-vector-hydration.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getMoviesWithMostRecentComments",
+      "method": "aggregate",
+      "startLine": 1124,
+      "endLine": 1124,
+      "expression": "moviesCollection.aggregate(pipeline)",
+      "inputs": [
+        "12-comments-report.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getMoviesByYearWithStats",
+      "method": "aggregate",
+      "startLine": 1248,
+      "endLine": 1248,
+      "expression": "moviesCollection.aggregate(pipeline)",
+      "inputs": [
+        "13-year-report.js"
+      ]
+    },
+    {
+      "file": "server/src/controllers/movieController.ts",
+      "function": "getDirectorsWithMostMovies",
+      "method": "aggregate",
+      "startLine": 1318,
+      "endLine": 1318,
+      "expression": "moviesCollection.aggregate(pipeline)",
+      "inputs": [
+        "14-director-report.js"
+      ]
+    },
+    {
+      "file": "server/src/config/database.ts",
+      "function": "verifyMoviesCollection",
+      "method": "estimatedDocumentCount",
+      "startLine": 118,
+      "endLine": 118,
+      "expression": "moviesCollection.estimatedDocumentCount()",
+      "inputs": [
+        "00-movie-count.js"
+      ]
+    },
+    {
+      "file": "server/src/config/database.ts",
+      "function": "createTextSearchIndex",
+      "method": "listIndexes",
+      "startLine": 141,
+      "endLine": 141,
+      "expression": "moviesCollection.listIndexes()",
+      "inputs": [
+        "18-list-indexes.js"
+      ]
+    },
+    {
+      "file": "server/src/config/database.ts",
+      "function": "createTextSearchIndex",
+      "method": "createIndex",
+      "startLine": 155,
+      "endLine": 161,
+      "expression": "moviesCollection.createIndex(\n      { plot: \"text\", title: \"text\", fullplot: \"text\" },\n      {\n        name: TEXT_INDEX_NAME,\n        background: true,\n      }\n    )",
+      "inputs": [
+        "19-text-index.js"
+      ]
+    }
+  ],
+  "scope": {
+    "input": "one MongoDB expression per file; literal example filters/data, no execution or verification code",
+    "databaseAccess": "all 21 collection operations in the current backend; getAllMovies find has separate filter and text-search examples",
+    "queryGuards": "original JavaScript query utilities live in scripts and are verified separately from query results",
+    "vectorSearch": "real queryVector supplied by dispatcher; second-stage hydration is an independent literal-ID query",
+    "externalEmbeddingAPI": "Voyage API analyzed but not invoked; provide a real voyage-3-large 2048-dimensional embedding to enable the vector input",
+    "httpFrontend": "Express response wrappers, middleware and Next.js UI are outside database-statement execution"
+  }
+}

@@ -17,16 +17,19 @@ npm run docs:build
 
 ## Compose 服务合集
 
-首个服务是 [Mongo Compose 与官方样例导入](compose/mongo-compose/README.md)。从 hello-docker 根目录执行：
+服务目录遵循 [案例目录约定](compose/README.md)，以 `meta.json` 统一声明输入、输出和运行入口。首个服务是 [Mongo Compose 与官方样例导入](compose/mongo-compose/README.md)。从 hello-docker 根目录执行：
 
 ```bash
 cd compose/mongo-compose
 docker compose up -d
-docker exec -u root hello-docker-mongo bash /workspace/import-samples.sh
+docker exec -u root hello-docker-mongo bash /workspace/scripts/import-samples.sh
+docker exec hello-docker-mongo bash /workspace/scripts/run.sh
 docker compose down
 ```
 
-Compose 将服务的 `data/` 目录共享到容器的 `/workspace/data`；Bash 脚本按需下载 MongoDB 官方 Atlas Sample Datasets 归档、导入全部样例库并查询验证。下载文件保留在宿主机的 `data/`，该目录已被 Git 忽略；数据库使用命名卷。Podman 使用相同文件，将命令中的 `docker` 替换为 `podman`。
+Compose 将当前服务目录共享到容器的 `/workspace`；`scripts/` 中的 Bash 脚本按需下载 MongoDB 官方 Atlas Sample Datasets 归档、导入全部样例库并查询验证。下载文件保留在宿主机的 `data/`，该目录已被 Git 忽略；MongoDB 运行时的数据文件使用独立命名卷。Podman 使用相同文件，将命令中的 `docker` 替换为 `podman`。
+
+[MFlix 业务语句](compose/mongo-compose/input/README.md) 将官方应用的数据库调用整理为纯粹的 `input/*.js` 表达式，由统一脚本通过 mongosh 执行增删改查、索引和聚合，直接结果生成到同名 `output/*.js.json`。普通写入使用临时练习库；来源、验证及额外搜索条件单独记录在汇总中。
 
 ## 离线工具
 
@@ -58,4 +61,4 @@ SQL、MQ、WASM 的后续接入路线在文档中说明。Podman 与 Kubernetes 
 
 `docs/` 文档与复现助手；`compose/` 本地服务与配套脚本；`scenarios/` JSON 协议；`labs/` 实验源码；`scripts/lib/` 公共逻辑；`tests/` 替身进程测试；`evidence/` Actions 产物；`.github/workflows/` 手动工作流。
 
-公共视觉模板的维护源在 hello-world 的 `design/shared/`，本项目保留副本以支持独立构建。运行时转换与 WASM 资产仍由 hello-wasm 维护。
+公共视觉模板的副本保存在 `docs/.vitepress/`，构建使用本仓库内的文件。运行时转换与 WASM 资产由独立的 [hello-wasm 仓库](https://github.com/xy2401/hello-wasm)维护。

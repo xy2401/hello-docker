@@ -12,7 +12,7 @@ Use `node bin/hello-docker.mjs plan --manifest scenarios/container-basics.json` 
 
 ## Coding Style & Naming Conventions
 
-Use two-space indentation, ESM imports, camelCase functions, PascalCase Vue components, and lowercase kebab-case routes/scenario IDs. Preserve Chinese explanations. Shared CSS and Chinese controls are copied from hello-world's canonical design templates; independent builds must not import files from the parent repository.
+Use two-space indentation, ESM imports, camelCase functions, PascalCase Vue components, and lowercase kebab-case routes/scenario IDs. Preserve Chinese explanations. Keep shared CSS and Chinese controls as local copies aligned with the shared design baseline. Builds use files within this repository; document commands from its own root.
 
 ## Testing Guidelines
 

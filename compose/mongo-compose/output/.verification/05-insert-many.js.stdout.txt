@@ -1,0 +1,1 @@
+{"input":"05-insert-many.js","status":"passed","output":"05-insert-many.js.json","error":null}

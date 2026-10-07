@@ -1,0 +1,66 @@
+[
+  {
+    "_id": {
+      "$oid": "573a1390f29313caabcd42e8"
+    },
+    "plot": "A group of bandits stage a brazen train hold-up, only to find a determined posse hot on their heels.",
+    "genres": [
+      "Short",
+      "Western"
+    ],
+    "cast": [
+      "A.C. Abadie",
+      "Gilbert M. 'Broncho Billy' Anderson",
+      "George Barnes",
+      "Justus D. Barnes"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTU3NjE5NzYtYTYyNS00MDVmLWIwYjgtMmYwYWIxZDYyNzU2XkEyXkFqcGdeQXVyNzQzNzQxNzI@._V1_SY1000_SX677_AL_.jpg",
+    "title": "The Great Train Robbery",
+    "directors": [
+      "Edwin S. Porter"
+    ],
+    "year": 1903
+  },
+  {
+    "_id": {
+      "$oid": "573a1390f29313caabcd446f"
+    },
+    "plot": "A greedy tycoon decides, on a whim, to corner the world market in wheat. This doubles the price of bread, forcing the grain's producers into charity lines and further into poverty. The film...",
+    "genres": [
+      "Short",
+      "Drama"
+    ],
+    "cast": [
+      "Frank Powell",
+      "Grace Henderson",
+      "James Kirkwood",
+      "Linda Arvidson"
+    ],
+    "title": "A Corner in Wheat",
+    "directors": [
+      "D.W. Griffith"
+    ],
+    "year": 1909
+  },
+  {
+    "_id": {
+      "$oid": "573a1390f29313caabcd4803"
+    },
+    "plot": "Cartoon figures announce, via comic strip balloons, that they will move - and move they do, in a wildly exaggerated style.",
+    "genres": [
+      "Animation",
+      "Short",
+      "Comedy"
+    ],
+    "cast": [
+      "Winsor McCay"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BYzg2NjNhNTctMjUxMi00ZWU4LWI3ZjYtNTI0NTQxNThjZTk2XkEyXkFqcGdeQXVyNzg5OTk2OA@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "Winsor McCay, the Famous Cartoonist of the N.Y. Herald and His Moving Comics",
+    "directors": [
+      "Winsor McCay",
+      "J. Stuart Blackton"
+    ],
+    "year": 1911
+  }
+]

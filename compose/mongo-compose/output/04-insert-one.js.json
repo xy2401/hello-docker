@@ -1,0 +1,6 @@
+{
+  "acknowledged": true,
+  "insertedId": {
+    "$oid": "000000000000000000000001"
+  }
+}

@@ -1,0 +1,866 @@
+[
+  {
+    "movieCount": 1,
+    "highestRating": null,
+    "lowestRating": null,
+    "totalVotes": 0,
+    "year": 2016,
+    "averageRating": null
+  },
+  {
+    "movieCount": 480,
+    "highestRating": 9.4,
+    "lowestRating": 3.1,
+    "totalVotes": 2997571,
+    "year": 2015,
+    "averageRating": 6.95
+  },
+  {
+    "movieCount": 1073,
+    "highestRating": 9.2,
+    "lowestRating": 1.6,
+    "totalVotes": 19490022,
+    "year": 2014,
+    "averageRating": 6.58
+  },
+  {
+    "movieCount": 1105,
+    "highestRating": 8.9,
+    "lowestRating": 1.6,
+    "totalVotes": 24061762,
+    "year": 2013,
+    "averageRating": 6.49
+  },
+  {
+    "movieCount": 955,
+    "highestRating": 8.8,
+    "lowestRating": 2.5,
+    "totalVotes": 24793550,
+    "year": 2012,
+    "averageRating": 6.48
+  },
+  {
+    "movieCount": 893,
+    "highestRating": 9.2,
+    "lowestRating": 1.6,
+    "totalVotes": 23540335,
+    "year": 2011,
+    "averageRating": 6.45
+  },
+  {
+    "movieCount": 866,
+    "highestRating": 8.8,
+    "lowestRating": 2.5,
+    "totalVotes": 22124894,
+    "year": 2010,
+    "averageRating": 6.51
+  },
+  {
+    "movieCount": 917,
+    "highestRating": 9.2,
+    "lowestRating": 2.1,
+    "totalVotes": 20296381,
+    "year": 2009,
+    "averageRating": 6.51
+  },
+  {
+    "movieCount": 886,
+    "highestRating": 9,
+    "lowestRating": 1.9,
+    "totalVotes": 22741519,
+    "year": 2008,
+    "averageRating": 6.55
+  },
+  {
+    "movieCount": 810,
+    "highestRating": 9,
+    "lowestRating": 2,
+    "totalVotes": 21289778,
+    "year": 2007,
+    "averageRating": 6.59
+  },
+  {
+    "movieCount": 774,
+    "highestRating": 9.5,
+    "lowestRating": 2.7,
+    "totalVotes": 20198082,
+    "year": 2006,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 713,
+    "highestRating": 8.7,
+    "lowestRating": 2.1,
+    "totalVotes": 18358805,
+    "year": 2005,
+    "averageRating": 6.58
+  },
+  {
+    "movieCount": 678,
+    "highestRating": 9,
+    "lowestRating": 1.9,
+    "totalVotes": 20453250,
+    "year": 2004,
+    "averageRating": 6.66
+  },
+  {
+    "movieCount": 603,
+    "highestRating": 8.9,
+    "lowestRating": 2,
+    "totalVotes": 16670445,
+    "year": 2003,
+    "averageRating": 6.53
+  },
+  {
+    "movieCount": 622,
+    "highestRating": 8.7,
+    "lowestRating": 2.9,
+    "totalVotes": 15767276,
+    "year": 2002,
+    "averageRating": 6.55
+  },
+  {
+    "movieCount": 612,
+    "highestRating": 9.6,
+    "lowestRating": 2.1,
+    "totalVotes": 16494165,
+    "year": 2001,
+    "averageRating": 6.57
+  },
+  {
+    "movieCount": 581,
+    "highestRating": 8.5,
+    "lowestRating": 2.4,
+    "totalVotes": 15077798,
+    "year": 2000,
+    "averageRating": 6.52
+  },
+  {
+    "movieCount": 515,
+    "highestRating": 8.9,
+    "lowestRating": 2.5,
+    "totalVotes": 15543903,
+    "year": 1999,
+    "averageRating": 6.62
+  },
+  {
+    "movieCount": 513,
+    "highestRating": 8.9,
+    "lowestRating": 2.3,
+    "totalVotes": 12046081,
+    "year": 1998,
+    "averageRating": 6.64
+  },
+  {
+    "movieCount": 439,
+    "highestRating": 8.7,
+    "lowestRating": 2.7,
+    "totalVotes": 11683202,
+    "year": 1997,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 407,
+    "highestRating": 9,
+    "lowestRating": 2.3,
+    "totalVotes": 7501539,
+    "year": 1996,
+    "averageRating": 6.57
+  },
+  {
+    "movieCount": 372,
+    "highestRating": 9.1,
+    "lowestRating": 2.4,
+    "totalVotes": 9560481,
+    "year": 1995,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 305,
+    "highestRating": 9.3,
+    "lowestRating": 2.3,
+    "totalVotes": 11716178,
+    "year": 1994,
+    "averageRating": 6.62
+  },
+  {
+    "movieCount": 274,
+    "highestRating": 8.9,
+    "lowestRating": 3.5,
+    "totalVotes": 6547648,
+    "year": 1993,
+    "averageRating": 6.61
+  },
+  {
+    "movieCount": 270,
+    "highestRating": 8.9,
+    "lowestRating": 3.7,
+    "totalVotes": 5368619,
+    "year": 1992,
+    "averageRating": 6.7
+  },
+  {
+    "movieCount": 238,
+    "highestRating": 8.7,
+    "lowestRating": 2.8,
+    "totalVotes": 4744238,
+    "year": 1991,
+    "averageRating": 6.61
+  },
+  {
+    "movieCount": 225,
+    "highestRating": 9.4,
+    "lowestRating": 2.2,
+    "totalVotes": 5080573,
+    "year": 1990,
+    "averageRating": 6.65
+  },
+  {
+    "movieCount": 232,
+    "highestRating": 9.2,
+    "lowestRating": 2.2,
+    "totalVotes": 4366676,
+    "year": 1989,
+    "averageRating": 6.68
+  },
+  {
+    "movieCount": 251,
+    "highestRating": 9,
+    "lowestRating": 3.4,
+    "totalVotes": 4240023,
+    "year": 1988,
+    "averageRating": 6.51
+  },
+  {
+    "movieCount": 222,
+    "highestRating": 8.8,
+    "lowestRating": 2.2,
+    "totalVotes": 4012549,
+    "year": 1987,
+    "averageRating": 6.64
+  },
+  {
+    "movieCount": 190,
+    "highestRating": 8.6,
+    "lowestRating": 2.9,
+    "totalVotes": 3705720,
+    "year": 1986,
+    "averageRating": 6.62
+  },
+  {
+    "movieCount": 189,
+    "highestRating": 8.8,
+    "lowestRating": 4.1,
+    "totalVotes": 2946533,
+    "year": 1985,
+    "averageRating": 6.72
+  },
+  {
+    "movieCount": 199,
+    "highestRating": 8.9,
+    "lowestRating": 2.1,
+    "totalVotes": 3812656,
+    "year": 1984,
+    "averageRating": 6.64
+  },
+  {
+    "movieCount": 161,
+    "highestRating": 8.6,
+    "lowestRating": 2.5,
+    "totalVotes": 2498988,
+    "year": 1983,
+    "averageRating": 6.77
+  },
+  {
+    "movieCount": 177,
+    "highestRating": 9,
+    "lowestRating": 3.4,
+    "totalVotes": 2784192,
+    "year": 1982,
+    "averageRating": 6.78
+  },
+  {
+    "movieCount": 168,
+    "highestRating": 8.6,
+    "lowestRating": 3.2,
+    "totalVotes": 2048558,
+    "year": 1981,
+    "averageRating": 6.7
+  },
+  {
+    "movieCount": 167,
+    "highestRating": 9.3,
+    "lowestRating": 3.4,
+    "totalVotes": 2753355,
+    "year": 1980,
+    "averageRating": 6.64
+  },
+  {
+    "movieCount": 131,
+    "highestRating": 8.7,
+    "lowestRating": 3.4,
+    "totalVotes": 2060554,
+    "year": 1979,
+    "averageRating": 6.9
+  },
+  {
+    "movieCount": 128,
+    "highestRating": 8.7,
+    "lowestRating": 2.9,
+    "totalVotes": 1279049,
+    "year": 1978,
+    "averageRating": 6.78
+  },
+  {
+    "movieCount": 123,
+    "highestRating": 8.7,
+    "lowestRating": 3.7,
+    "totalVotes": 1733668,
+    "year": 1977,
+    "averageRating": 7.06
+  },
+  {
+    "movieCount": 116,
+    "highestRating": 9,
+    "lowestRating": 4.2,
+    "totalVotes": 1654133,
+    "year": 1976,
+    "averageRating": 6.93
+  },
+  {
+    "movieCount": 107,
+    "highestRating": 8.7,
+    "lowestRating": 4.3,
+    "totalVotes": 2098806,
+    "year": 1975,
+    "averageRating": 7.04
+  },
+  {
+    "movieCount": 103,
+    "highestRating": 9.1,
+    "lowestRating": 5.4,
+    "totalVotes": 1813006,
+    "year": 1974,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 112,
+    "highestRating": 8.5,
+    "lowestRating": 4,
+    "totalVotes": 1621624,
+    "year": 1973,
+    "averageRating": 7.07
+  },
+  {
+    "movieCount": 121,
+    "highestRating": 9.2,
+    "lowestRating": 4.1,
+    "totalVotes": 1643505,
+    "year": 1972,
+    "averageRating": 7.07
+  },
+  {
+    "movieCount": 106,
+    "highestRating": 8.3,
+    "lowestRating": 3.9,
+    "totalVotes": 904017,
+    "year": 1971,
+    "averageRating": 7.23
+  },
+  {
+    "movieCount": 120,
+    "highestRating": 8.3,
+    "lowestRating": 4.5,
+    "totalVotes": 574431,
+    "year": 1970,
+    "averageRating": 7.08
+  },
+  {
+    "movieCount": 107,
+    "highestRating": 8.4,
+    "lowestRating": 5.7,
+    "totalVotes": 619335,
+    "year": 1969,
+    "averageRating": 7.06
+  },
+  {
+    "movieCount": 89,
+    "highestRating": 8.6,
+    "lowestRating": 5.6,
+    "totalVotes": 1235348,
+    "year": 1968,
+    "averageRating": 7.1
+  },
+  {
+    "movieCount": 81,
+    "highestRating": 8.3,
+    "lowestRating": 4.3,
+    "totalVotes": 834268,
+    "year": 1967,
+    "averageRating": 7.01
+  },
+  {
+    "movieCount": 87,
+    "highestRating": 8.2,
+    "lowestRating": 5.1,
+    "totalVotes": 331414,
+    "year": 1966,
+    "averageRating": 6.95
+  },
+  {
+    "movieCount": 77,
+    "highestRating": 8.8,
+    "lowestRating": 5.2,
+    "totalVotes": 494486,
+    "year": 1965,
+    "averageRating": 7.26
+  },
+  {
+    "movieCount": 86,
+    "highestRating": 8.5,
+    "lowestRating": 3.9,
+    "totalVotes": 973053,
+    "year": 1964,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 69,
+    "highestRating": 8.3,
+    "lowestRating": 5.1,
+    "totalVotes": 580694,
+    "year": 1963,
+    "averageRating": 6.99
+  },
+  {
+    "movieCount": 70,
+    "highestRating": 8.4,
+    "lowestRating": 5.5,
+    "totalVotes": 588078,
+    "year": 1962,
+    "averageRating": 7.17
+  },
+  {
+    "movieCount": 68,
+    "highestRating": 8.3,
+    "lowestRating": 5.1,
+    "totalVotes": 262052,
+    "year": 1961,
+    "averageRating": 7.12
+  },
+  {
+    "movieCount": 73,
+    "highestRating": 8.6,
+    "lowestRating": 5.5,
+    "totalVotes": 755078,
+    "year": 1960,
+    "averageRating": 7.21
+  },
+  {
+    "movieCount": 71,
+    "highestRating": 8.4,
+    "lowestRating": 2.4,
+    "totalVotes": 576466,
+    "year": 1959,
+    "averageRating": 7.13
+  },
+  {
+    "movieCount": 75,
+    "highestRating": 8.4,
+    "lowestRating": 5.4,
+    "totalVotes": 503371,
+    "year": 1958,
+    "averageRating": 7.12
+  },
+  {
+    "movieCount": 71,
+    "highestRating": 8.5,
+    "lowestRating": 4.8,
+    "totalVotes": 451974,
+    "year": 1957,
+    "averageRating": 7.1
+  },
+  {
+    "movieCount": 67,
+    "highestRating": 8.2,
+    "lowestRating": 5.6,
+    "totalVotes": 388687,
+    "year": 1956,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 67,
+    "highestRating": 8.4,
+    "lowestRating": 5.7,
+    "totalVotes": 505250,
+    "year": 1955,
+    "averageRating": 7.24
+  },
+  {
+    "movieCount": 47,
+    "highestRating": 8.6,
+    "lowestRating": 6.2,
+    "totalVotes": 529940,
+    "year": 1954,
+    "averageRating": 7.21
+  },
+  {
+    "movieCount": 65,
+    "highestRating": 8.5,
+    "lowestRating": 4.9,
+    "totalVotes": 285105,
+    "year": 1953,
+    "averageRating": 7.1
+  },
+  {
+    "movieCount": 45,
+    "highestRating": 8.4,
+    "lowestRating": 5.6,
+    "totalVotes": 290268,
+    "year": 1952,
+    "averageRating": 7.29
+  },
+  {
+    "movieCount": 54,
+    "highestRating": 8.2,
+    "lowestRating": 6.1,
+    "totalVotes": 480912,
+    "year": 1951,
+    "averageRating": 7.24
+  },
+  {
+    "movieCount": 55,
+    "highestRating": 8.4,
+    "lowestRating": 4.9,
+    "totalVotes": 304555,
+    "year": 1950,
+    "averageRating": 7.06
+  },
+  {
+    "movieCount": 52,
+    "highestRating": 8.3,
+    "lowestRating": 6.2,
+    "totalVotes": 121047,
+    "year": 1949,
+    "averageRating": 7.18
+  },
+  {
+    "movieCount": 56,
+    "highestRating": 8.3,
+    "lowestRating": 4.7,
+    "totalVotes": 238289,
+    "year": 1948,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 29,
+    "highestRating": 8.2,
+    "lowestRating": 6.5,
+    "totalVotes": 70490,
+    "year": 1947,
+    "averageRating": 7.23
+  },
+  {
+    "movieCount": 34,
+    "highestRating": 8.6,
+    "lowestRating": 6.5,
+    "totalVotes": 521090,
+    "year": 1946,
+    "averageRating": 7.4
+  },
+  {
+    "movieCount": 29,
+    "highestRating": 8.3,
+    "lowestRating": 5.8,
+    "totalVotes": 99569,
+    "year": 1945,
+    "averageRating": 7.13
+  },
+  {
+    "movieCount": 23,
+    "highestRating": 8.4,
+    "lowestRating": 6.6,
+    "totalVotes": 216997,
+    "year": 1944,
+    "averageRating": 7.45
+  },
+  {
+    "movieCount": 32,
+    "highestRating": 8.2,
+    "lowestRating": 6.1,
+    "totalVotes": 112237,
+    "year": 1943,
+    "averageRating": 7.26
+  },
+  {
+    "movieCount": 30,
+    "highestRating": 8.6,
+    "lowestRating": 6.3,
+    "totalVotes": 572521,
+    "year": 1942,
+    "averageRating": 7.32
+  },
+  {
+    "movieCount": 24,
+    "highestRating": 8.4,
+    "lowestRating": 5.4,
+    "totalVotes": 427851,
+    "year": 1941,
+    "averageRating": 7.25
+  },
+  {
+    "movieCount": 24,
+    "highestRating": 8.5,
+    "lowestRating": 5.2,
+    "totalVotes": 360240,
+    "year": 1940,
+    "averageRating": 7.12
+  },
+  {
+    "movieCount": 20,
+    "highestRating": 8.2,
+    "lowestRating": 6.8,
+    "totalVotes": 543821,
+    "year": 1939,
+    "averageRating": 7.53
+  },
+  {
+    "movieCount": 38,
+    "highestRating": 8.1,
+    "lowestRating": 6.3,
+    "totalVotes": 228830,
+    "year": 1938,
+    "averageRating": 7.29
+  },
+  {
+    "movieCount": 31,
+    "highestRating": 8.3,
+    "lowestRating": 6.1,
+    "totalVotes": 165119,
+    "year": 1937,
+    "averageRating": 7.26
+  },
+  {
+    "movieCount": 30,
+    "highestRating": 8.6,
+    "lowestRating": 5.4,
+    "totalVotes": 178846,
+    "year": 1936,
+    "averageRating": 7.18
+  },
+  {
+    "movieCount": 31,
+    "highestRating": 8.1,
+    "lowestRating": 6.6,
+    "totalVotes": 82788,
+    "year": 1935,
+    "averageRating": 7.2
+  },
+  {
+    "movieCount": 23,
+    "highestRating": 7.9,
+    "lowestRating": 5.9,
+    "totalVotes": 44552,
+    "year": 1934,
+    "averageRating": 7.17
+  },
+  {
+    "movieCount": 20,
+    "highestRating": 8.1,
+    "lowestRating": 5.8,
+    "totalVotes": 85004,
+    "year": 1933,
+    "averageRating": 7.18
+  },
+  {
+    "movieCount": 18,
+    "highestRating": 8.2,
+    "lowestRating": 6.4,
+    "totalVotes": 63790,
+    "year": 1932,
+    "averageRating": 7.38
+  },
+  {
+    "movieCount": 20,
+    "highestRating": 8.6,
+    "lowestRating": 6,
+    "totalVotes": 172158,
+    "year": 1931,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 10,
+    "highestRating": 7.5,
+    "lowestRating": 5.8,
+    "totalVotes": 13822,
+    "year": 1930,
+    "averageRating": 6.97
+  },
+  {
+    "movieCount": 7,
+    "highestRating": 7.9,
+    "lowestRating": 6.4,
+    "totalVotes": 10544,
+    "year": 1929,
+    "averageRating": 7.06
+  },
+  {
+    "movieCount": 8,
+    "highestRating": 7.8,
+    "lowestRating": 5.8,
+    "totalVotes": 10643,
+    "year": 1928,
+    "averageRating": 7.24
+  },
+  {
+    "movieCount": 4,
+    "highestRating": 7.8,
+    "lowestRating": 6.2,
+    "totalVotes": 14464,
+    "year": 1927,
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 6,
+    "highestRating": 8.1,
+    "lowestRating": 6.8,
+    "totalVotes": 4866,
+    "year": 1926,
+    "averageRating": 7.35
+  },
+  {
+    "movieCount": 3,
+    "highestRating": 7.9,
+    "lowestRating": 6.7,
+    "totalVotes": 1495,
+    "year": 1925,
+    "averageRating": 7.4
+  },
+  {
+    "movieCount": 6,
+    "highestRating": 7.9,
+    "lowestRating": 6.5,
+    "totalVotes": 7943,
+    "year": 1924,
+    "averageRating": 7.33
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 7.2,
+    "lowestRating": 7.1,
+    "totalVotes": 5807,
+    "year": 1923,
+    "averageRating": 7.15
+  },
+  {
+    "movieCount": 3,
+    "highestRating": 7.7,
+    "lowestRating": 6.6,
+    "totalVotes": 3703,
+    "year": 1922,
+    "averageRating": 7.2
+  },
+  {
+    "movieCount": 5,
+    "highestRating": 8.1,
+    "lowestRating": 6.8,
+    "totalVotes": 5421,
+    "year": 1921,
+    "averageRating": 7.4
+  },
+  {
+    "movieCount": 4,
+    "highestRating": 8.3,
+    "lowestRating": 6.2,
+    "totalVotes": 5638,
+    "year": 1920,
+    "averageRating": 6.98
+  },
+  {
+    "movieCount": 1,
+    "highestRating": 7,
+    "lowestRating": 7,
+    "totalVotes": 639,
+    "year": 1919,
+    "averageRating": 7
+  },
+  {
+    "movieCount": 1,
+    "highestRating": 6.6,
+    "lowestRating": 6.6,
+    "totalVotes": 446,
+    "year": 1918,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 6.9,
+    "lowestRating": 6.9,
+    "totalVotes": 1272,
+    "year": 1917,
+    "averageRating": 6.9
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 6.3,
+    "lowestRating": 5.9,
+    "totalVotes": 409,
+    "year": 1916,
+    "averageRating": 6.1
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 6.8,
+    "lowestRating": 6.4,
+    "totalVotes": 801,
+    "year": 1915,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 3,
+    "highestRating": 7.6,
+    "lowestRating": 5.8,
+    "totalVotes": 2804,
+    "year": 1914,
+    "averageRating": 6.9
+  },
+  {
+    "movieCount": 1,
+    "highestRating": 6,
+    "lowestRating": 6,
+    "totalVotes": 371,
+    "year": 1913,
+    "averageRating": 6
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 7.3,
+    "lowestRating": 7.3,
+    "totalVotes": 2070,
+    "year": 1911,
+    "averageRating": 7.3
+  },
+  {
+    "movieCount": 1,
+    "highestRating": 6.6,
+    "lowestRating": 6.6,
+    "totalVotes": 1375,
+    "year": 1909,
+    "averageRating": 6.6
+  },
+  {
+    "movieCount": 1,
+    "highestRating": 7.4,
+    "lowestRating": 7.4,
+    "totalVotes": 9847,
+    "year": 1903,
+    "averageRating": 7.4
+  },
+  {
+    "movieCount": 2,
+    "highestRating": 5.9,
+    "lowestRating": 5.9,
+    "totalVotes": 3498,
+    "year": 1896,
+    "averageRating": 5.9
+  }
+]

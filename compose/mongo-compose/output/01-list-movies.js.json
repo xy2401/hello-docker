@@ -1,0 +1,346 @@
+[
+  {
+    "_id": {
+      "$oid": "573a13a4f29313caabd11d1d"
+    },
+    "countries": [
+      "Philippines"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "runtime": 93,
+    "cast": [
+      "Ricky Davao",
+      "Joel Torre",
+      "Cris Villanueva",
+      "Daria Ramirez"
+    ],
+    "num_mflix_comments": 3,
+    "title": "3rd World Hero",
+    "lastupdated": "2015-03-06 00:46:09.587000000",
+    "languages": [
+      "Filipino",
+      "Tagalog"
+    ],
+    "released": {
+      "$date": "2003-05-04T00:00:00Z"
+    },
+    "directors": [
+      "Mike De Leon"
+    ],
+    "writers": [
+      "Clodualdo Del Mundo Jr.",
+      "Mike De Leon"
+    ],
+    "awards": {
+      "wins": 10,
+      "nominations": 9,
+      "text": "10 wins & 9 nominations."
+    },
+    "year": 2000,
+    "imdb": {
+      "rating": 7.5,
+      "votes": 91,
+      "id": 260731
+    },
+    "type": "movie",
+    "tomatoes": {
+      "website": "http://www.bigbadlove.net",
+      "viewer": {
+        "rating": 3.6,
+        "numReviews": 1182,
+        "meter": 73
+      },
+      "dvd": {
+        "$date": "2002-09-24T00:00:00Z"
+      },
+      "critic": {
+        "rating": 5.4,
+        "numReviews": 58,
+        "meter": 41
+      },
+      "boxOffice": "$0.1M",
+      "consensus": "A boozy depiction of a struggling writer, Big Bad Love is too messy and self-indulgent.",
+      "rotten": 34,
+      "production": "IFC Films",
+      "lastUpdated": {
+        "$date": "2015-08-18T18:03:29Z"
+      },
+      "fresh": 24
+    }
+  },
+  {
+    "_id": {
+      "$oid": "573a13a1f29313caabd0787f"
+    },
+    "plot": "Nicolas, a handsome, young waiter, is befriended by Frèdèric Delamont, a wealthy middle-aged businessman. Delamont, a man of power, influence and strictly refined tastes, is immediately ...",
+    "genres": [
+      "Crime",
+      "Thriller",
+      "Drama"
+    ],
+    "runtime": 90,
+    "metacritic": 74,
+    "cast": [
+      "Bernard Giraudeau",
+      "Jean-Pierre Lorit",
+      "Florence Thomassin",
+      "Charles Berling"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTQxMDY4NzYwNF5BMl5BanBnXkFtZTcwNTQ3MDcyMQ@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "A Matter of Taste",
+    "fullplot": "Nicolas, a handsome, young waiter, is befriended by Frèdèric Delamont, a wealthy middle-aged businessman. Delamont, a man of power, influence and strictly refined tastes, is immediately smitten by Nicolas' charm. Lonely and phobic, Delamont offers Nicolas a lucrative job as his personal food taster. In spite of their differences, a close friendship begins to emerge between the two men. However, their bond of trust and admiration soon spirals downward into a dangerous game of deceit and obsession for which neither is prepared.",
+    "languages": [
+      "French"
+    ],
+    "released": {
+      "$date": "2000-04-26T00:00:00Z"
+    },
+    "directors": [
+      "Bernard Rapp"
+    ],
+    "writers": [
+      "Philippe Balland (book)",
+      "Bernard Rapp",
+      "Gilles Taurand"
+    ],
+    "awards": {
+      "wins": 4,
+      "nominations": 6,
+      "text": "4 wins & 6 nominations."
+    },
+    "lastupdated": "2015-08-21 00:41:34.547000000",
+    "year": 2000,
+    "imdb": {
+      "rating": 7,
+      "votes": 1381,
+      "id": 217119
+    },
+    "countries": [
+      "France"
+    ],
+    "type": "movie",
+    "tomatoes": {
+      "viewer": {
+        "rating": 3.2,
+        "numReviews": 112,
+        "meter": 52
+      },
+      "dvd": {
+        "$date": "2002-10-29T00:00:00Z"
+      },
+      "production": "TLA Releasing",
+      "lastUpdated": {
+        "$date": "2015-09-11T18:06:30Z"
+      }
+    },
+    "num_mflix_comments": 0
+  },
+  {
+    "_id": {
+      "$oid": "573a13a1f29313caabd0784e"
+    },
+    "plot": "An old Jewish shop owner Mr. Shaddick ('Peter Falk') suddenly finds himself responsible for a little black boy named Herman Washington ('Aaron Meek') trying to escape the chaos of Harlem as...",
+    "genres": [
+      "Drama"
+    ],
+    "runtime": 94,
+    "cast": [
+      "Peter Falk",
+      "Andrew McCarthy",
+      "Nastassja Kinski",
+      "Ruby Dee"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTY1MjU2MjgxNV5BMl5BanBnXkFtZTcwNTA1ODcxMQ@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "A Storm in Summer",
+    "fullplot": "An old Jewish shop owner Mr. Shaddick ('Peter Falk') suddenly finds himself responsible for a little black boy named Herman Washington ('Aaron Meek') trying to escape the chaos of Harlem as part of a sponsorship program. At first, Mr. Shaddick wants nothing more than to get rid of the kid, but to spite the well to do lady who tries to take him over to her home, he decides to take Herman in. As time goes on, Mr. Shaddick finds himself caring about Herman and has the misfortune of being the bearer of bad news, which reminds him of when he received a telegram himself.",
+    "languages": [
+      "English"
+    ],
+    "released": {
+      "$date": "2000-02-27T00:00:00Z"
+    },
+    "directors": [
+      "Robert Wise"
+    ],
+    "writers": [
+      "Rod Serling",
+      "Rod Serling"
+    ],
+    "awards": {
+      "wins": 3,
+      "nominations": 3,
+      "text": "3 wins & 3 nominations."
+    },
+    "lastupdated": "2015-08-28 00:43:09.457000000",
+    "year": 2000,
+    "imdb": {
+      "rating": 7.2,
+      "votes": 381,
+      "id": 217066
+    },
+    "countries": [
+      "USA"
+    ],
+    "type": "movie",
+    "tomatoes": {
+      "viewer": {
+        "rating": 3.2,
+        "numReviews": 88,
+        "meter": 45
+      },
+      "dvd": {
+        "$date": "2002-05-28T00:00:00Z"
+      },
+      "lastUpdated": {
+        "$date": "2015-08-23T18:56:32Z"
+      }
+    },
+    "num_mflix_comments": 0
+  },
+  {
+    "_id": {
+      "$oid": "573a13a4f29313caabd11865"
+    },
+    "plot": "Young Iranian Kurds (brothers and sisters) try to save the youngest of them, who is seriously ill.",
+    "genres": [
+      "Drama",
+      "War"
+    ],
+    "runtime": 80,
+    "metacritic": 78,
+    "cast": [
+      "Ayoub Ahmadi",
+      "Rojin Younessi",
+      "Amaneh Ekhtiar-dini",
+      "Madi Ekhtiar-dini"
+    ],
+    "num_mflix_comments": 1,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjAyNzk4NDYzNl5BMl5BanBnXkFtZTcwNzczNTEyMQ@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "A Time for Drunken Horses",
+    "fullplot": "After their father dies, a family of five are forced to survive on their own in a Kurdish village on the border of Iran and Iraq. Matters are made worse when 12 year old Ayoub, the new head of the family, is told that his handicapped brother, Madi, needs an immediate operation in order to remain alive. This heartbreaking tale shows the lengths to which a family will go in order to survive in the harshest of conditions, where even the horses are fed liquor in order to work.",
+    "languages": [
+      "Kurdish",
+      "Persian"
+    ],
+    "released": {
+      "$date": "2000-09-13T00:00:00Z"
+    },
+    "directors": [
+      "Bahman Ghobadi"
+    ],
+    "writers": [
+      "Bahman Ghobadi"
+    ],
+    "awards": {
+      "wins": 11,
+      "nominations": 3,
+      "text": "11 wins & 3 nominations."
+    },
+    "lastupdated": "2015-08-30 23:48:02.513000000",
+    "year": 2000,
+    "imdb": {
+      "rating": 7.7,
+      "votes": 4903,
+      "id": 259072
+    },
+    "countries": [
+      "Iran"
+    ],
+    "type": "movie",
+    "tomatoes": {
+      "viewer": {
+        "rating": 4.2,
+        "numReviews": 1302,
+        "meter": 91
+      },
+      "dvd": {
+        "$date": "2011-02-15T00:00:00Z"
+      },
+      "critic": {
+        "rating": 7.3,
+        "numReviews": 32,
+        "meter": 84
+      },
+      "lastUpdated": {
+        "$date": "2015-08-27T18:08:04Z"
+      },
+      "rotten": 5,
+      "production": "Shooting Gallery",
+      "fresh": 27
+    }
+  },
+  {
+    "_id": {
+      "$oid": "573a13a4f29313caabd116f2"
+    },
+    "plot": "Young Iranian Kurds (brothers and sisters) try to save the youngest of them, who is seriously ill.",
+    "genres": [
+      "Drama",
+      "War"
+    ],
+    "runtime": 80,
+    "metacritic": 78,
+    "cast": [
+      "Ayoub Ahmadi",
+      "Rojin Younessi",
+      "Amaneh Ekhtiar-dini",
+      "Madi Ekhtiar-dini"
+    ],
+    "num_mflix_comments": 0,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjAyNzk4NDYzNl5BMl5BanBnXkFtZTcwNzczNTEyMQ@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "A Time for Drunken Horses",
+    "fullplot": "After their father dies, a family of five are forced to survive on their own in a Kurdish village on the border of Iran and Iraq. Matters are made worse when 12 year old Ayoub, the new head of the family, is told that his handicapped brother, Madi, needs an immediate operation in order to remain alive. This heartbreaking tale shows the lengths to which a family will go in order to survive in the harshest of conditions, where even the horses are fed liquor in order to work.",
+    "languages": [
+      "Kurdish",
+      "Persian"
+    ],
+    "released": {
+      "$date": "2000-09-13T00:00:00Z"
+    },
+    "directors": [
+      "Bahman Ghobadi"
+    ],
+    "writers": [
+      "Bahman Ghobadi"
+    ],
+    "awards": {
+      "wins": 11,
+      "nominations": 3,
+      "text": "11 wins & 3 nominations."
+    },
+    "lastupdated": "2015-09-02 00:32:37.960000000",
+    "year": 2000,
+    "imdb": {
+      "rating": 7.7,
+      "votes": 4907,
+      "id": 259072
+    },
+    "countries": [
+      "Iran"
+    ],
+    "type": "movie",
+    "tomatoes": {
+      "viewer": {
+        "rating": 4.2,
+        "numReviews": 1302,
+        "meter": 91
+      },
+      "dvd": {
+        "$date": "2011-02-15T00:00:00Z"
+      },
+      "critic": {
+        "rating": 7.3,
+        "numReviews": 32,
+        "meter": 84
+      },
+      "lastUpdated": {
+        "$date": "2015-08-27T18:08:04Z"
+      },
+      "rotten": 5,
+      "production": "Shooting Gallery",
+      "fresh": 27
+    }
+  }
+]

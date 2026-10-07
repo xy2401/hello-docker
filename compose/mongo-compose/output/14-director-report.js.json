@@ -1,0 +1,27 @@
+[
+  {
+    "movieCount": 40,
+    "director": "Woody Allen",
+    "averageRating": 7.22
+  },
+  {
+    "movieCount": 32,
+    "director": "Martin Scorsese",
+    "averageRating": 7.64
+  },
+  {
+    "movieCount": 31,
+    "director": "Takashi Miike",
+    "averageRating": 6.84
+  },
+  {
+    "movieCount": 29,
+    "director": "John Ford",
+    "averageRating": 7.12
+  },
+  {
+    "movieCount": 29,
+    "director": "Sidney Lumet",
+    "averageRating": 6.93
+  }
+]

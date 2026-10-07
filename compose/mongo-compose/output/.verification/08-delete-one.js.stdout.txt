@@ -1,0 +1,1 @@
+{"input":"08-delete-one.js","status":"passed","output":"08-delete-one.js.json","error":null}

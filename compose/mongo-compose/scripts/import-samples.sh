@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 
 S3_URL="https://atlas-education.s3.amazonaws.com/sampledata.archive"
 archive="data/sampledata.archive"

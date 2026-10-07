@@ -1,0 +1,1 @@
+{"input":"10-find-one-and-delete.js","status":"passed","output":"10-find-one-and-delete.js.json","error":null}

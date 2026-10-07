@@ -11,8 +11,7 @@ services:
       - "127.0.0.1:27017:27017"
     volumes:
       - mongo-data:/data/db
-      - ./data:/workspace/data
-      - ./import-samples.sh:/workspace/import-samples.sh:ro
+      - .:/workspace
 
 volumes:
   mongo-data:

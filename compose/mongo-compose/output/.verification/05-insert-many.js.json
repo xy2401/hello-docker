@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 3,
+  "runId": "20261007T144227Z-4564",
+  "id": "05-insert-many",
+  "input": "05-insert-many.js",
+  "status": "passed",
+  "startedAt": "2026-10-07T14:42:31.204Z",
+  "inputSha256": "0390bcc63962eb2d16494f0e84801fa7257e2ea577c03a9eae8f2e139471b7e2",
+  "metaSha256": "8f19a98cd53a7045ed2671a4c70d453c7ebc5b35c0312e1b688cb57c812d9394",
+  "runtimeSha256": {
+    "scripts/meta.cjs": "0bcca18e85325fe7add5623c24894028023d6bab1c0fb620edf64b65e244d4bc",
+    "scripts/run-query.js": "897dad4f34dbfded99c147f6a2b79fed3d39045581c5cfd3c1d461425af8fda3",
+    "scripts/summarize.js": "30c1ef1a219e34eebc851ab2627ae2e23895d471cc11db0a21a74b0e9a78ef47",
+    "scripts/mflix-rules.js": "283c5103d04507072046a048e3bb9556e0e4f84b221e8d2a3f881cf1f6156b5e",
+    "scripts/query-utils.js": "47aa190f6ec29149bfd4d6506b5f9c781d80ea89e278d4e235bce299c3f9b7e7"
+  },
+  "runnerSha256": "c1da40d36b53ae292192a9ef9d81972828a7b6ef7da04742e1768405bd7ea79a",
+  "sourceDatabase": "sample_mflix",
+  "preparationInputs": [],
+  "mongoDBVersion": "7.0.43",
+  "mongoshVersion": "2.12.0",
+  "sourceSnapshot": {
+    "movies": 21349,
+    "comments": 41079
+  },
+  "writeDatabase": "hello_case_validation_6ac65a573f566d42b7584aa8",
+  "temporaryDatabaseCreated": true,
+  "cleanup": "temporary validation database removed",
+  "assertions": 6,
+  "finishedAt": "2026-10-07T14:42:31.253Z",
+  "output": "05-insert-many.js.json",
+  "outputSha256": "7bb312bb855de33ac5148dd454f7a93b82a1fa5196aefec0571f7589b551bdff",
+  "exitCode": 0,
+  "logs": {
+    "stdout": ".verification/05-insert-many.js.stdout.txt",
+    "stdoutSha256": "6a1992d593a7d517ca6fbdf506321d755054d4ddd51fb57e9b1c7d8914f2a7e1",
+    "stderr": ".verification/05-insert-many.js.stderr.txt",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exitCodeSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  }
+}

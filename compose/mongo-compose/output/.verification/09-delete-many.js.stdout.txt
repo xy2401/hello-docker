@@ -1,0 +1,1 @@
+{"input":"09-delete-many.js","status":"passed","output":"09-delete-many.js.json","error":null}

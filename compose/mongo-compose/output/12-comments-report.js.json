@@ -1,0 +1,28 @@
+[
+  {
+    "_id": {
+      "$oid": "573a1390f29313caabcd446f"
+    },
+    "genres": [
+      "Short",
+      "Drama"
+    ],
+    "title": "A Corner in Wheat",
+    "year": 1909,
+    "imdbRating": 6.6,
+    "recentComments": [
+      {
+        "_id": {
+          "$oid": "5a9427648b0beebeb69579f5"
+        },
+        "userName": "John Bishop",
+        "userEmail": "john_bishop@fakegmail.com",
+        "text": "Id error ab at molestias dolorum incidunt. Non deserunt praesentium dolorem nihil. Optio tempora vel ut quas.\nMinus dicta numquam quasi. Rem totam cumque at eum. Ullam hic ut ea magni.",
+        "date": {
+          "$date": "1975-01-21T00:31:22Z"
+        }
+      }
+    ],
+    "totalComments": 1
+  }
+]
