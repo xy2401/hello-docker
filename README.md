@@ -29,7 +29,7 @@ docker compose down
 
 Compose 将当前服务目录共享到容器的 `/workspace`；`scripts/` 中的 Bash 脚本按需下载 MongoDB 官方 Atlas Sample Datasets 归档、导入全部样例库并查询验证。下载文件保留在宿主机的 `data/`，该目录已被 Git 忽略；MongoDB 运行时的数据文件使用独立命名卷。Podman 使用相同文件，将命令中的 `docker` 替换为 `podman`。
 
-[MFlix 业务语句](compose/mongo-compose/input/README.md) 将官方应用的数据库调用整理为纯粹的 `input/*.js` 表达式，由统一脚本通过 mongosh 执行增删改查、索引和聚合，直接结果生成到同名 `output/*.js.json`。普通写入使用临时练习库；来源、验证及额外搜索条件单独记录在汇总中。
+[MFlix 业务语句](compose/mongo-compose/README.md#mflix-业务输入与生成结果) 将官方应用的数据库调用整理为纯粹的 `input/*.js` 表达式，由统一脚本通过 mongosh 执行增删改查、索引和聚合，直接结果生成到同名 `output/*.js.json`。普通写入使用临时练习库；来源、验证及额外搜索条件单独记录在汇总中。
 
 ## 离线工具
 
