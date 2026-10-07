@@ -8,6 +8,45 @@
   --doc-action-active-bg: #1e3a8a;
 }
 .dark { --vp-c-brand-1: #93c5fd; --vp-c-brand-2: #bfdbfe; }
+
+:where(.VPNavBarMenuLink, .VPNavScreenMenuLink, .VPMenu a):is([href*="/docker/"], [href*="/podman/"], [href*="/kubernetes/"])::before,
+.VPSidebarItem.level-0:has(a[href*="/docker/"], a[href*="/podman/"], a[href*="/kubernetes/"]) > .item .text::before,
+.container-product-page .vp-doc h1::before {
+  content: '';
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  margin-right: .35rem;
+  vertical-align: -.2rem;
+  background: var(--container-product-logo) center / contain no-repeat;
+}
+
+.container-product-docker,
+:where(.VPNavBarMenuLink, .VPNavScreenMenuLink, .VPMenu a)[href*="/docker/"],
+.VPSidebarItem.level-0:has(a[href*="/docker/"]) {
+  --container-product-logo: url('/icons/docker.svg');
+}
+
+.container-product-podman,
+:where(.VPNavBarMenuLink, .VPNavScreenMenuLink, .VPMenu a)[href*="/podman/"],
+.VPSidebarItem.level-0:has(a[href*="/podman/"]) {
+  --container-product-logo: url('/icons/podman.svg');
+}
+
+.container-product-kubernetes,
+:where(.VPNavBarMenuLink, .VPNavScreenMenuLink, .VPMenu a)[href*="/kubernetes/"],
+.VPSidebarItem.level-0:has(a[href*="/kubernetes/"]) {
+  --container-product-logo: url('/icons/kubernetes.svg');
+}
+
+.container-product-page .vp-doc h1::before {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: .3em;
+  vertical-align: -.15em;
+}
+
 .VPHome .VPHero .name, .VPHome .VPHero .text { letter-spacing: -.025em; }
 .VPHome .VPHero .image-src { filter: drop-shadow(0 18px 28px rgba(37, 99, 235, .18)); }
 .VPFeature { border-color: var(--vp-c-divider); }

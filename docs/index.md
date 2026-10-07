@@ -19,18 +19,28 @@ hero:
       text: 公共工具与接入
       link: /support/
 features:
-  - icon: 🧱
-    title: 基础机制
-    details: 进程、namespaces、cgroups、镜像分层、网络与权限，解释容器边界如何建立。
-  - icon: 📦
-    title: 构建与运行
-    details: Docker 与 Podman 的操作路径、构建缓存、Compose、rootless 和系统服务。
-  - icon: ☸️
-    title: 集群与生态
-    details: Kubernetes 的声明式协调，以及运行时、镜像仓库和部署工具之间的关系。
+  - icon:
+      src: /icons/docker.svg
+      alt: ''
+    title: Docker
+    details: 理解 Engine 与容器生命周期，掌握镜像构建、缓存、Compose 和诊断。
+    link: /docker/
+  - icon:
+      src: /icons/podman.svg
+      alt: ''
+    title: Podman
+    details: 理解无守护进程与 rootless 的操作路径，使用 Machine、Quadlet 和系统服务。
+    link: /podman/
+  - icon:
+      src: /icons/kubernetes.svg
+      alt: ''
+    title: Kubernetes
+    details: 理解声明式协调、工作负载、服务网络、配置与存储，以及最小实验的排错步骤。
+    link: /kubernetes/
   - icon: 🔬
     title: 可追溯验证
     details: 共用场景脚本在 GitHub Actions 执行，源码、镜像与日志一同形成验证证据。
+    link: /evidence/
 ---
 
 ## 三条学习路径

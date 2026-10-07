@@ -1,0 +1,18 @@
+name: hello-docker-mongo
+
+services:
+  mongo:
+    image: mongo:8.0@sha256:02a0cc7939f5ed38f30f9bc714ef5f682d49baf9350c54acf302ce833087fe8a
+    container_name: hello-docker-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./data:/workspace/data
+      - ./import-samples.sh:/workspace/import-samples.sh:ro
+
+volumes:
+  mongo-data:

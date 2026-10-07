@@ -1,6 +1,7 @@
 node_modules/
 .cache/
 .artifacts/
+/compose/*/data/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 *.log
