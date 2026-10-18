@@ -10,4 +10,4 @@
 
 ## 操作入口
 
-[配置与复现助手](/playground/)可查看 Dockerfile。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `image-build`。机制说明见[构建手册](/docker/build)。
+[🧪 实验台](/playground/)可查看 Dockerfile。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `image-build`。机制说明见[构建手册](/docker/build)。

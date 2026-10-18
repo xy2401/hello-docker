@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-02efdf7d78b049ed",
+  "product": {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "version": "9.0.4"
+  },
+  "examples": [
+    {
+      "id": "version",
+      "title": "版本",
+      "notes": [
+        "服务端 9.0.4；Shell 和 Database Tools 分别固定版本，和历史 7/8 结果分开。"
+      ],
+      "steps": [
+        {
+          "id": "server-version",
+          "argv": [
+            "mongod",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "9.0.4"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "shell-version",
+          "argv": [
+            "mongosh",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "2.12.0"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "ping",
+      "title": "连接检查",
+      "notes": [
+        "只连接本次隔离容器的本地服务。"
+      ],
+      "steps": [
+        {
+          "id": "ping",
+          "argv": [
+            "mongosh",
+            "--quiet",
+            "--eval",
+            "print(JSON.stringify(db.runCommand({ping:1})))"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "\"ok\":1"
+            }
+          ],
+          "format": "json",
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "collection",
+      "title": "临时集合增查",
+      "notes": [
+        "只操作 capture 临时数据库，不导入或修改既有 MFlix 快照。"
+      ],
+      "steps": [
+        {
+          "id": "insert-find",
+          "argv": [
+            "mongosh",
+            "--quiet",
+            "capture",
+            "--eval",
+            "db.demo.drop(); db.demo.insertMany([{_id:1,name:'alpha',score:10},{_id:2,name:'beta',score:20}]); print(JSON.stringify(db.demo.find({score:{$gte:15}}).toArray()))"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "beta"
+            }
+          ],
+          "format": "json",
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "export-import",
+      "title": "导出与导入",
+      "notes": [
+        "独立使用 seed 集合，目标为本次运行的 imported 集合。"
+      ],
+      "steps": [
+        {
+          "id": "export",
+          "argv": [
+            "mongoexport",
+            "--db=capture",
+            "--collection=seed",
+            "--out=/work/seed.json",
+            "--jsonArray"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "import",
+          "argv": [
+            "mongoimport",
+            "--db=capture",
+            "--collection=imported",
+            "--drop",
+            "--file=/work/seed.json",
+            "--jsonArray"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "verify",
+          "argv": [
+            "mongosh",
+            "--quiet",
+            "capture",
+            "--eval",
+            "print(JSON.stringify({count:db.imported.countDocuments({})}))"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "\"count\":3"
+            }
+          ],
+          "format": "json",
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "dump-restore",
+      "title": "备份与恢复",
+      "notes": [
+        "从 seed 备份到 /work，再恢复为 restored；不接触外部服务。"
+      ],
+      "steps": [
+        {
+          "id": "dump",
+          "argv": [
+            "mongodump",
+            "--db=capture",
+            "--collection=seed",
+            "--out=/work/dump"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "restore",
+          "argv": [
+            "mongorestore",
+            "--drop",
+            "--nsInclude=capture.seed",
+            "--nsFrom=capture.seed",
+            "--nsTo=capture.restored",
+            "/work/dump"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "verify",
+          "argv": [
+            "mongosh",
+            "--quiet",
+            "capture",
+            "--eval",
+            "print(JSON.stringify({count:db.restored.countDocuments({})}))"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "\"count\":3"
+            }
+          ],
+          "format": "json",
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    }
+  ]
+}

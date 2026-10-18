@@ -6,7 +6,7 @@ This project contains a Chinese VitePress handbook and shared Docker tooling. Pa
 
 ## Build, Test, and Development Commands
 
-Use Node.js 22.16+. Run `npm ci`, then `npm run docs:dev` for port 5178. `npm run docs:build` regenerates the portable scenario catalog and builds documentation. `npm run check:manifests` checks scenarios and local links. `npm test` runs Node's test runner with fixture processes, without Docker.
+Use Node.js 22.16+. Run `npm ci`, then `npm run docs:dev` for port 24045. `npm run docs:build` regenerates the portable scenario catalog and builds documentation. `npm run check:manifests` checks scenarios and local links. `npm test` runs Node's test runner with fixture processes, without Docker.
 
 Use `node bin/hello-docker.mjs plan --manifest scenarios/container-basics.json` for offline plans. Container execution and publication belong to Linux GitHub Actions runners.
 

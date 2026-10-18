@@ -1,6 +1,6 @@
 *.sh text eol=lf
-/compose/mongo-compose/input/* text eol=lf
-/compose/mongo-compose/scripts/* text eol=lf
-/compose/mongo-compose/source.json text eol=lf
-/compose/mongo-compose/meta.json text eol=lf
-/compose/mongo-compose/output/** text eol=lf
+/compose/mongo-samples/input/* text eol=lf
+/compose/mongo-samples/scripts/* text eol=lf
+/compose/mongo-samples/source.json text eol=lf
+/compose/mongo-samples/meta.json text eol=lf
+/compose/mongo-samples/output/** text eol=lf

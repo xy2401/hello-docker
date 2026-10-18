@@ -25,14 +25,26 @@ export default defineConfig({
       { text: 'Docker', link: '/docker/' },
       { text: 'Podman', link: '/podman/' },
       { text: 'Kubernetes', link: '/kubernetes/' },
-      { text: '生态地图', link: '/ecosystem/' },
-      { text: '项目支持', items: [
+      { text: '🧪 实验台', link: '/playground/' },
+      { text: '⚖️ 对比矩阵', link: '/matrix/' },
+      { text: '📚 参考资料', link: '/reference/' },
+      { text: '📦 更多', items: [
+        { text: '生态地图', link: '/ecosystem/' },
         { text: '公共工具与接入', link: '/support/' },
-        { text: '配置与复现助手', link: '/playground/' },
         { text: 'Actions 验证证据', link: '/evidence/' },
       ] },
     ],
     sidebar: {
+      '/matrix/': [
+        { text: '⚖️ 对比矩阵', items: [
+          { text: '⚖️ 对比矩阵', link: '/matrix/' },
+        ] },
+      ],
+      '/reference/': [
+        { text: '📚 参考资料', items: [
+          { text: '📚 参考资料', link: '/reference/' },
+        ] },
+      ],
       '/concepts/': [
         { text: '容器基础', items: [
           { text: '从进程到容器', link: '/concepts/' },
@@ -74,13 +86,14 @@ export default defineConfig({
         { text: '公共工具与接入', items: [
           { text: '公共支持总览', link: '/support/' },
           { text: '场景协议与证据', link: '/support/protocol' },
+          { text: '软件命令与完整文件采集', link: '/support/software-capture' },
           { text: 'Actions 执行与回写', link: '/support/actions' },
           { text: '五个项目的接入路线', link: '/support/projects' },
         ] },
       ],
       '/playground/': [
-        { text: '配置与复现助手', items: [
-          { text: '配置与复现助手', link: '/playground/' },
+        { text: '🧪 实验台', items: [
+          { text: '🧪 实验台', link: '/playground/' },
         ] },
       ],
       '/evidence/': [

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "version": "9.0.4"
+  },
+  "capture": {
+    "id": "pending-02efdf7d78b049ed",
+    "status": "pending",
+    "execution": "pending",
+    "sourceSha": null,
+    "capturedAt": null,
+    "recipeSha256": "b8307068b7d8484309db9c8ce8d19ed5308a0a008941cdee8e7058cbcec660d5",
+    "base": {
+      "image": "ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a",
+      "source": "https://hub.docker.com/_/ubuntu",
+      "indexDigest": "sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944"
+    },
+    "platform": "linux/amd64",
+    "workflowUrl": null,
+    "errors": [],
+    "note": "采集配方已就绪；未运行 Actions，不存在新环境的真实结果。"
+  },
+  "catalog": "runs/pending-02efdf7d78b049ed/catalog.json",
+  "examples": "runs/pending-02efdf7d78b049ed/examples.json",
+  "fileIndex": "runs/pending-02efdf7d78b049ed/file-index.json",
+  "diffIndex": "runs/pending-02efdf7d78b049ed/diff-index.json",
+  "artifacts": {
+    "runs/pending-02efdf7d78b049ed/catalog.json": {
+      "sha256": "fb82e3684a247bdefe3d6ba8f4a3cce923ddd46b420097b6fdf6aaa4644d2100",
+      "sizeBytes": 1618
+    },
+    "runs/pending-02efdf7d78b049ed/examples.json": {
+      "sha256": "9f4eb34729e9a7b30affda577025a28814a384e769fc3518cf880aaefbb6a0e6",
+      "sizeBytes": 7677
+    },
+    "runs/pending-02efdf7d78b049ed/file-index.json": {
+      "sha256": "e9391c74f64a0a8572c0742e4194ef2202beffbfe7a40bccbcf8862fd4a20d24",
+      "sizeBytes": 103
+    },
+    "runs/pending-02efdf7d78b049ed/diff-index.json": {
+      "sha256": "586da81784834984e4bffa462017acff8c925eaa033cc19f2c7dd8662d3dc10f",
+      "sizeBytes": 98
+    }
+  }
+}

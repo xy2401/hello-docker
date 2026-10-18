@@ -1,6 +1,6 @@
 # Compose 服务与案例目录约定
 
-每个服务目录独立使用自己的 Compose、说明和脚本，例如 [mongo-compose](mongo-compose/README.md)。在 hello-docker 仓库中运行命令，从 `compose/<服务目录>/` 启动；其他仓库采用这套约定时，命令从各自仓库说明的位置执行。
+每个服务目录独立使用自己的 Compose、说明和脚本，例如 [mongo-samples](mongo-samples/README.md)。在 hello-docker 仓库中运行命令，从 `compose/<服务目录>/` 启动；其他仓库采用这套约定时，命令从各自仓库说明的位置执行。
 
 ```text
 <案例目录>/

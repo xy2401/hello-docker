@@ -21,7 +21,7 @@ FROM ${BASE_IMAGE}
 COPY --from=builder /message.txt /message.txt
 ```
 
-实际实验还创建一个只属于构建阶段的文件；最终运行断言该文件不存在。这里验证的是阶段边界，不是比较镜像体积。完整配置在[复现助手](/playground/)中，结果在[构建证据](/evidence/image-build)中。
+实际实验还创建一个只属于构建阶段的文件；最终运行断言该文件不存在。这里验证的是阶段边界，不是比较镜像体积。完整配置在[🧪 实验台](/playground/)中，结果在[构建证据](/evidence/image-build)中。
 
 ## 平台与发布
 

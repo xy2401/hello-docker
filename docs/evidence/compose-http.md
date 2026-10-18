@@ -10,4 +10,4 @@
 
 ## 操作入口
 
-[配置与复现助手](/playground/)提供完整配置。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `compose-http`。解释见[Compose 手册](/docker/compose)。
+[🧪 实验台](/playground/)提供完整配置。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `compose-http`。解释见[Compose 手册](/docker/compose)。

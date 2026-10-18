@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-02efdf7d78b049ed",
+  "product": {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "version": "9.0.4"
+  },
+  "commands": [],
+  "plannedCommands": [
+    {
+      "id": "planned:mongod",
+      "name": "mongod",
+      "path": null,
+      "purpose": "启动 MongoDB 数据库服务。",
+      "category": "服务",
+      "verified": false
+    },
+    {
+      "id": "planned:mongos",
+      "name": "mongos",
+      "path": null,
+      "purpose": "启动分片集群路由。",
+      "category": "服务",
+      "verified": false
+    },
+    {
+      "id": "planned:mongosh",
+      "name": "mongosh",
+      "path": null,
+      "purpose": "运行 MongoDB Shell 查询与管理表达式。",
+      "category": "交互",
+      "verified": false
+    },
+    {
+      "id": "planned:mongoexport",
+      "name": "mongoexport",
+      "path": null,
+      "purpose": "导出集合为 JSON 或 CSV。",
+      "category": "导入导出",
+      "verified": false
+    },
+    {
+      "id": "planned:mongoimport",
+      "name": "mongoimport",
+      "path": null,
+      "purpose": "将 JSON 或 CSV 导入集合。",
+      "category": "导入导出",
+      "verified": false
+    },
+    {
+      "id": "planned:mongodump",
+      "name": "mongodump",
+      "path": null,
+      "purpose": "生成数据库 BSON 备份。",
+      "category": "备份恢复",
+      "verified": false
+    },
+    {
+      "id": "planned:mongorestore",
+      "name": "mongorestore",
+      "path": null,
+      "purpose": "从 BSON 备份恢复数据库。",
+      "category": "备份恢复",
+      "verified": false
+    }
+  ]
+}

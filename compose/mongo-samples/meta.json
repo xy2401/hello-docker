@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "mongo-compose",
+  "id": "mongo-samples",
   "title": "MongoDB MFlix 业务语句",
   "runtime": "mongosh",
   "outputFormat": "mongodb-extended-json",

@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "rabbitmq",
+    "name": "RabbitMQ",
+    "version": "4.1.4 / Erlang 27.3.4.3"
+  },
+  "platform": "linux/amd64",
+  "base": {
+    "image": "ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a",
+    "source": "https://hub.docker.com/_/ubuntu",
+    "indexDigest": "sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944"
+  },
+  "collector": {
+    "id": "collector-python",
+    "version": "3.13.9+20251014",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20251014/cpython-3.13.9%2B20251014-x86_64-unknown-linux-gnu-install_only.tar.gz",
+    "sha256": "b4b0204658930337c85c321b49ed2585fe544097a72bc76dcf0b77e49fff8473",
+    "strip": 0
+  },
+  "dependencies": {
+    "packages": [
+      "ca-certificates",
+      "build-essential",
+      "autoconf",
+      "libncurses-dev",
+      "libssl-dev",
+      "zlib1g-dev",
+      "perl",
+      "xz-utils"
+    ],
+    "artifacts": [
+      {
+        "id": "erlang",
+        "version": "27.3.4.3",
+        "url": "https://github.com/erlang/otp/releases/download/OTP-27.3.4.3/otp_src_27.3.4.3.tar.gz",
+        "sha256": "597618c75890e8e606033bc8dbf6ec87fdf4e892c10b4912ae3c9a4f01384579",
+        "destination": "/opt/erlang",
+        "strip": 1
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "rabbitmq",
+      "version": "4.1.4",
+      "url": "https://github.com/rabbitmq/rabbitmq-server/releases/download/v4.1.4/rabbitmq-server-generic-unix-4.1.4.tar.xz",
+      "sha256": "c03b5976a1d6933ad81b77f7b30d6cbdc92886dededf6f028e29d5c4d42f5b7e",
+      "destination": "/opt/rabbitmq",
+      "strip": 1
+    }
+  ],
+  "environment": {
+    "PATH": "/opt/rabbitmq/sbin:/opt/erlang/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "HOME": "/work",
+    "RABBITMQ_NODENAME": "rabbit@capture-rabbitmq",
+    "RABBITMQ_MNESIA_BASE": "/work/rabbitmq/mnesia",
+    "RABBITMQ_LOG_BASE": "/work/rabbitmq/log",
+    "RABBITMQ_PID_FILE": "/work/rabbitmq.pid"
+  },
+  "commandRoots": [
+    "/opt/rabbitmq/sbin"
+  ],
+  "commandNotes": {
+    "rabbitmqctl": {
+      "purpose": "管理 RabbitMQ 节点、虚拟主机、用户和权限。",
+      "category": "管理"
+    },
+    "rabbitmq-diagnostics": {
+      "purpose": "检查节点存活、健康和运行状态。",
+      "category": "诊断"
+    },
+    "rabbitmq-plugins": {
+      "purpose": "查看、启用或禁用插件。",
+      "category": "插件"
+    },
+    "rabbitmq-server": {
+      "purpose": "启动 RabbitMQ 服务。",
+      "category": "服务"
+    }
+  },
+  "prepare": "mkdir -p /work/rabbitmq/mnesia /work/rabbitmq/log\nrabbitmq-server -detached\nready=0\nfor i in $(seq 1 60); do if rabbitmq-diagnostics -q check_running; then ready=1; break; fi; sleep 2; done\ntest \"$ready\" = 1\n",
+  "examples": [
+    {
+      "id": "version",
+      "title": "版本",
+      "notes": [
+        "RabbitMQ 4.1.4 与既有 ERTS 15.2.7.2 对应的 Erlang 27.3.4.3；Erlang 命令归依赖。"
+      ],
+      "steps": [
+        {
+          "id": "version",
+          "argv": [
+            "rabbitmqctl",
+            "version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "4.1.4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "title": "节点状态",
+      "notes": [
+        "单节点、隔离网络，不连接已有集群。"
+      ],
+      "steps": [
+        {
+          "id": "ping",
+          "argv": [
+            "rabbitmq-diagnostics",
+            "-q",
+            "ping"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "Ping succeeded"
+            }
+          ]
+        },
+        {
+          "id": "running",
+          "argv": [
+            "rabbitmq-diagnostics",
+            "-q",
+            "check_running"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "fully booted"
+            }
+          ]
+        },
+        {
+          "id": "status",
+          "argv": [
+            "rabbitmqctl",
+            "status"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "4.1.4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vhost",
+      "title": "虚拟主机",
+      "notes": [
+        "只创建本次容器内的 capture-vhost。"
+      ],
+      "steps": [
+        {
+          "id": "create",
+          "argv": [
+            "rabbitmqctl",
+            "add_vhost",
+            "capture-vhost"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-vhost"
+            }
+          ]
+        },
+        {
+          "id": "list",
+          "argv": [
+            "rabbitmqctl",
+            "list_vhosts",
+            "name"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-vhost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "users",
+      "title": "用户与权限",
+      "notes": [
+        "capture-demo / capture-only-password 是公开演示凭据，仅用于该临时容器。"
+      ],
+      "steps": [
+        {
+          "id": "create-vhost",
+          "argv": [
+            "rabbitmqctl",
+            "add_vhost",
+            "capture-users"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-users"
+            }
+          ]
+        },
+        {
+          "id": "create-user",
+          "argv": [
+            "rabbitmqctl",
+            "add_user",
+            "capture-demo",
+            "capture-only-password"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-demo"
+            }
+          ]
+        },
+        {
+          "id": "permissions",
+          "argv": [
+            "rabbitmqctl",
+            "set_permissions",
+            "-p",
+            "capture-users",
+            "capture-demo",
+            ".*",
+            ".*",
+            ".*"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "verify",
+          "argv": [
+            "rabbitmqctl",
+            "list_user_permissions",
+            "capture-demo"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-users"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plugins",
+      "title": "插件列表",
+      "notes": [
+        "只读取插件列表，不额外下载或启用插件。"
+      ],
+      "steps": [
+        {
+          "id": "plugins",
+          "argv": [
+            "rabbitmq-plugins",
+            "list",
+            "-m"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "rabbitmq_management"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,10 +7,12 @@
   "engines": { "node": "^20.19.0 || >=22.16.0" },
   "bin": { "hello-docker": "bin/hello-docker.mjs" },
   "scripts": {
-    "docs:dev": "vitepress dev docs --host 127.0.0.1 --port 5178 --strictPort",
+    "docs:dev": "vitepress dev docs --host 127.0.0.1 --port 24045 --strictPort",
     "docs:build": "node scripts/build-catalog.mjs && vitepress build docs",
-    "docs:preview": "vitepress preview docs --host 127.0.0.1 --port 5178 --strictPort",
+    "docs:preview": "vitepress preview docs --host 127.0.0.1 --port 24045 --strictPort",
     "docker:plan": "node bin/hello-docker.mjs plan --manifest scenarios/container-basics.json",
+    "software:plan": "node bin/software-capture.mjs plan",
+    "test:software": "node --test tests/software.test.mjs && python3 tests/software-inventory.test.py",
     "check:manifests": "node scripts/check-project.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run check:manifests && npm test"

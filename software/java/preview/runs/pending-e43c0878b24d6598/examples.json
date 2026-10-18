@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-e43c0878b24d6598",
+  "product": {
+    "id": "java",
+    "name": "Java",
+    "version": "Temurin 25.0.3+9"
+  },
+  "examples": [
+    {
+      "id": "version",
+      "title": "版本",
+      "notes": [
+        "发行包固定为 Temurin 25.0.3+9；不把系统工具列入 JDK。"
+      ],
+      "steps": [
+        {
+          "id": "java-version",
+          "argv": [
+            "java",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "25.0.3"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "javac-version",
+          "argv": [
+            "javac",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "25.0.3"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "compile-run",
+      "title": "编译与运行",
+      "notes": [
+        "使用临时 /work 目录；编译没有标准输出时仍记录退出码。"
+      ],
+      "steps": [
+        {
+          "id": "compile",
+          "argv": [
+            "sh",
+            "-c",
+            "javac /work/Main.java && test -s /work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "run",
+          "argv": [
+            "java",
+            "-cp",
+            "/work",
+            "Main"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "hello-java-capture"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "jar",
+      "title": "JAR 打包与列表",
+      "notes": [
+        "案例独立准备 class 文件，不依赖上一案例成功。"
+      ],
+      "steps": [
+        {
+          "id": "package",
+          "argv": [
+            "sh",
+            "-c",
+            "javac /work/Main.java && jar --create --file /work/main.jar -C /work Main.class && test -s /work/main.jar"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "list",
+          "argv": [
+            "jar",
+            "--list",
+            "--file",
+            "/work/main.jar"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "Main.class"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "javap",
+      "title": "字节码查看",
+      "notes": [
+        "先编译，再用 javap 查看指令。"
+      ],
+      "steps": [
+        {
+          "id": "prepare-class",
+          "argv": [
+            "javac",
+            "/work/Main.java"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "disassemble",
+          "argv": [
+            "javap",
+            "-c",
+            "/work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "invokevirtual"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "jdeps",
+      "title": "依赖分析",
+      "notes": [
+        "先编译，依赖分析结果应包含 java.base。"
+      ],
+      "steps": [
+        {
+          "id": "prepare-class",
+          "argv": [
+            "javac",
+            "/work/Main.java"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "dependencies",
+          "argv": [
+            "jdeps",
+            "/work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "java.base"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-340bd08424adb3be",
+  "product": {
+    "id": "rabbitmq",
+    "name": "RabbitMQ",
+    "version": "4.1.4 / Erlang 27.3.4.3"
+  },
+  "commands": [],
+  "plannedCommands": [
+    {
+      "id": "planned:rabbitmqctl",
+      "name": "rabbitmqctl",
+      "path": null,
+      "purpose": "管理 RabbitMQ 节点、虚拟主机、用户和权限。",
+      "category": "管理",
+      "verified": false
+    },
+    {
+      "id": "planned:rabbitmq-diagnostics",
+      "name": "rabbitmq-diagnostics",
+      "path": null,
+      "purpose": "检查节点存活、健康和运行状态。",
+      "category": "诊断",
+      "verified": false
+    },
+    {
+      "id": "planned:rabbitmq-plugins",
+      "name": "rabbitmq-plugins",
+      "path": null,
+      "purpose": "查看、启用或禁用插件。",
+      "category": "插件",
+      "verified": false
+    },
+    {
+      "id": "planned:rabbitmq-server",
+      "name": "rabbitmq-server",
+      "path": null,
+      "purpose": "启动 RabbitMQ 服务。",
+      "category": "服务",
+      "verified": false
+    }
+  ]
+}

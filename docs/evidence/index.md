@@ -10,4 +10,4 @@
 
 通过记录对应各场景页面的采集时间与 source SHA；修改源码后需重新验证。
 
-[查看复现助手](/playground/) · [执行与回写规则](/support/actions)
+[🧪 实验台](/playground/) · [执行与回写规则](/support/actions)

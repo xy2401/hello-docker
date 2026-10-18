@@ -7,7 +7,7 @@
 以下命令从 hello-docker 仓库根目录执行，PowerShell 与 Bash 都可使用。
 
 ```bash
-cd compose/mongo-compose
+cd compose/mongo-samples
 
 # 启动 MongoDB，共享当前服务目录
 docker compose up -d
@@ -224,7 +224,7 @@ Compose 镜像仍固定为 MongoDB 8.0；本轮使用现有 7.0.43 容器，没�
 import fs from 'node:fs';
 import path from 'node:path';
 
-const manifestPath = path.resolve('compose/mongo-compose/meta.json');
+const manifestPath = path.resolve('compose/mongo-samples/meta.json');
 const baseDir = path.dirname(manifestPath);
 const catalog = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const item = catalog.files.find(file => file.id === '01-list-movies');

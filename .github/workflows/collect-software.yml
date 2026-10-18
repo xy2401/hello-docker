@@ -1,0 +1,84 @@
+name: Collect software files and command examples
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        description: Controlled Ubuntu 26.04 capture; uploads artifacts only
+        type: choice
+        required: true
+        options: [java, mongodb, rabbitmq, all]
+permissions:
+  contents: read
+concurrency:
+  group: software-capture-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  select:
+    runs-on: ubuntu-24.04
+    outputs:
+      products: ${{ steps.products.outputs.value }}
+    steps:
+      - id: products
+        env:
+          PRODUCT: ${{ inputs.product }}
+        run: |
+          case "$PRODUCT" in
+            all) echo 'value=["java","mongodb","rabbitmq"]' >> "$GITHUB_OUTPUT" ;;
+            java|mongodb|rabbitmq) printf 'value=["%s"]\n' "$PRODUCT" >> "$GITHUB_OUTPUT" ;;
+            *) exit 1 ;;
+          esac
+  capture:
+    needs: select
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        product: ${{ fromJSON(needs.select.outputs.products) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Save the reviewed offline plan
+        env:
+          PRODUCT: ${{ matrix.product }}
+        run: |
+          mkdir -p .artifacts
+          node bin/software-capture.mjs plan --product "$PRODUCT" > ".artifacts/$PRODUCT-plan.json"
+      - name: Focused metadata, diff and package tests on Linux
+        run: |
+          node --test tests/software.test.mjs
+          python3 tests/software-inventory.test.py
+      - name: Capture three full stages and execute examples
+        env:
+          PRODUCT: ${{ matrix.product }}
+          HELLO_DOCKER_TOOL_SHA: ${{ github.sha }}
+        run: node bin/software-capture.mjs run --product "$PRODUCT" --output ".artifacts/software-$PRODUCT"
+      - name: Verify raw records and exported package
+        env:
+          PRODUCT: ${{ matrix.product }}
+        run: node bin/software-capture.mjs verify --product "$PRODUCT" --source ".artifacts/software-$PRODUCT"
+      - name: Upload metadata, logs and display package (including failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: software-${{ matrix.product }}-${{ github.run_id }}
+          path: |
+            .artifacts/${{ matrix.product }}-plan.json
+            .artifacts/software-${{ matrix.product }}/run.json
+            .artifacts/software-${{ matrix.product }}/recipe.json
+            .artifacts/software-${{ matrix.product }}/lock.json
+            .artifacts/software-${{ matrix.product }}/files.*.jsonl*
+            .artifacts/software-${{ matrix.product }}/differences.jsonl
+            .artifacts/software-${{ matrix.product }}/ownership.json
+            .artifacts/software-${{ matrix.product }}/examples.json
+            .artifacts/software-${{ matrix.product }}/steps.json
+            .artifacts/software-${{ matrix.product }}/logs/
+            .artifacts/software-${{ matrix.product }}/site/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

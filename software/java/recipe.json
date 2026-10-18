@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "java",
+    "name": "Java",
+    "version": "Temurin 25.0.3+9"
+  },
+  "platform": "linux/amd64",
+  "base": {
+    "image": "ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a",
+    "source": "https://hub.docker.com/_/ubuntu",
+    "indexDigest": "sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944"
+  },
+  "collector": {
+    "id": "collector-python",
+    "version": "3.13.9+20251014",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20251014/cpython-3.13.9%2B20251014-x86_64-unknown-linux-gnu-install_only.tar.gz",
+    "sha256": "b4b0204658930337c85c321b49ed2585fe544097a72bc76dcf0b77e49fff8473",
+    "strip": 0
+  },
+  "dependencies": {
+    "packages": [
+      "ca-certificates",
+      "fontconfig",
+      "libfreetype6",
+      "libasound2t64",
+      "libx11-6",
+      "libxext6",
+      "libxi6",
+      "libxrender1",
+      "libxtst6",
+      "tzdata",
+      "zlib1g",
+      "binutils"
+    ],
+    "artifacts": []
+  },
+  "artifacts": [
+    {
+      "id": "jdk",
+      "version": "25.0.3+9",
+      "url": "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.3%2B9/OpenJDK25U-jdk_x64_linux_hotspot_25.0.3_9.tar.gz",
+      "sha256": "69264a7a211bf5029830d07bc3370f879769d62ebc5b5488e90c9343a2da0e1f",
+      "destination": "/opt/java",
+      "strip": 1
+    }
+  ],
+  "environment": {
+    "JAVA_HOME": "/opt/java",
+    "PATH": "/opt/java/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "HOME": "/work"
+  },
+  "commandRoots": [
+    "/opt/java/bin"
+  ],
+  "commandNotes": {
+    "java": {
+      "purpose": "运行 Java 类或 JAR；查看运行时版本。",
+      "category": "运行"
+    },
+    "javac": {
+      "purpose": "将 Java 源文件编译为 class 文件。",
+      "category": "编译"
+    },
+    "jar": {
+      "purpose": "创建、查看和解包 JAR 归档。",
+      "category": "打包"
+    },
+    "javap": {
+      "purpose": "查看 class 的结构和字节码。",
+      "category": "分析"
+    },
+    "jdeps": {
+      "purpose": "分析类与模块依赖。",
+      "category": "分析"
+    },
+    "jcmd": {
+      "purpose": "向运行中的 JVM 发送诊断命令。",
+      "category": "诊断"
+    },
+    "jshell": {
+      "purpose": "交互执行 Java 表达式。",
+      "category": "交互"
+    },
+    "jlink": {
+      "purpose": "生成定制 Java 运行时。",
+      "category": "打包"
+    }
+  },
+  "prepare": "cat > /work/Main.java <<'JAVA'\npublic class Main { public static void main(String[] args) { System.out.println(\"hello-java-capture\"); } }\nJAVA\n",
+  "examples": [
+    {
+      "id": "version",
+      "title": "版本",
+      "notes": [
+        "发行包固定为 Temurin 25.0.3+9；不把系统工具列入 JDK。"
+      ],
+      "steps": [
+        {
+          "id": "java-version",
+          "argv": [
+            "java",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "25.0.3"
+            }
+          ]
+        },
+        {
+          "id": "javac-version",
+          "argv": [
+            "javac",
+            "--version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "25.0.3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compile-run",
+      "title": "编译与运行",
+      "notes": [
+        "使用临时 /work 目录；编译没有标准输出时仍记录退出码。"
+      ],
+      "steps": [
+        {
+          "id": "compile",
+          "argv": [
+            "sh",
+            "-c",
+            "javac /work/Main.java && test -s /work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "run",
+          "argv": [
+            "java",
+            "-cp",
+            "/work",
+            "Main"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "hello-java-capture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jar",
+      "title": "JAR 打包与列表",
+      "notes": [
+        "案例独立准备 class 文件，不依赖上一案例成功。"
+      ],
+      "steps": [
+        {
+          "id": "package",
+          "argv": [
+            "sh",
+            "-c",
+            "javac /work/Main.java && jar --create --file /work/main.jar -C /work Main.class && test -s /work/main.jar"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "list",
+          "argv": [
+            "jar",
+            "--list",
+            "--file",
+            "/work/main.jar"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "Main.class"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "javap",
+      "title": "字节码查看",
+      "notes": [
+        "先编译，再用 javap 查看指令。"
+      ],
+      "steps": [
+        {
+          "id": "prepare-class",
+          "argv": [
+            "javac",
+            "/work/Main.java"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "disassemble",
+          "argv": [
+            "javap",
+            "-c",
+            "/work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "invokevirtual"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jdeps",
+      "title": "依赖分析",
+      "notes": [
+        "先编译，依赖分析结果应包含 java.base。"
+      ],
+      "steps": [
+        {
+          "id": "prepare-class",
+          "argv": [
+            "javac",
+            "/work/Main.java"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "dependencies",
+          "argv": [
+            "jdeps",
+            "/work/Main.class"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "java.base"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

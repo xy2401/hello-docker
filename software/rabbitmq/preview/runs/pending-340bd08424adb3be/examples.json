@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-340bd08424adb3be",
+  "product": {
+    "id": "rabbitmq",
+    "name": "RabbitMQ",
+    "version": "4.1.4 / Erlang 27.3.4.3"
+  },
+  "examples": [
+    {
+      "id": "version",
+      "title": "版本",
+      "notes": [
+        "RabbitMQ 4.1.4 与既有 ERTS 15.2.7.2 对应的 Erlang 27.3.4.3；Erlang 命令归依赖。"
+      ],
+      "steps": [
+        {
+          "id": "version",
+          "argv": [
+            "rabbitmqctl",
+            "version"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "4.1.4"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "status",
+      "title": "节点状态",
+      "notes": [
+        "单节点、隔离网络，不连接已有集群。"
+      ],
+      "steps": [
+        {
+          "id": "ping",
+          "argv": [
+            "rabbitmq-diagnostics",
+            "-q",
+            "ping"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "Ping succeeded"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "running",
+          "argv": [
+            "rabbitmq-diagnostics",
+            "-q",
+            "check_running"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "fully booted"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "status",
+          "argv": [
+            "rabbitmqctl",
+            "status"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "4.1.4"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "vhost",
+      "title": "虚拟主机",
+      "notes": [
+        "只创建本次容器内的 capture-vhost。"
+      ],
+      "steps": [
+        {
+          "id": "create",
+          "argv": [
+            "rabbitmqctl",
+            "add_vhost",
+            "capture-vhost"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-vhost"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "list",
+          "argv": [
+            "rabbitmqctl",
+            "list_vhosts",
+            "name"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-vhost"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "users",
+      "title": "用户与权限",
+      "notes": [
+        "capture-demo / capture-only-password 是公开演示凭据，仅用于该临时容器。"
+      ],
+      "steps": [
+        {
+          "id": "create-vhost",
+          "argv": [
+            "rabbitmqctl",
+            "add_vhost",
+            "capture-users"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-users"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "create-user",
+          "argv": [
+            "rabbitmqctl",
+            "add_user",
+            "capture-demo",
+            "capture-only-password"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-demo"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "permissions",
+          "argv": [
+            "rabbitmqctl",
+            "set_permissions",
+            "-p",
+            "capture-users",
+            "capture-demo",
+            ".*",
+            ".*",
+            ".*"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        },
+        {
+          "id": "verify",
+          "argv": [
+            "rabbitmqctl",
+            "list_user_permissions",
+            "capture-demo"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "capture-users"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "plugins",
+      "title": "插件列表",
+      "notes": [
+        "只读取插件列表，不额外下载或启用插件。"
+      ],
+      "steps": [
+        {
+          "id": "plugins",
+          "argv": [
+            "rabbitmq-plugins",
+            "list",
+            "-m"
+          ],
+          "assertions": [
+            {
+              "stream": "exitCode",
+              "op": "equals",
+              "value": 0
+            },
+            {
+              "stream": "stdout",
+              "op": "includes",
+              "value": "rabbitmq_management"
+            }
+          ],
+          "cwd": "/work",
+          "stdin": null,
+          "status": "not-run",
+          "stdout": null,
+          "stderr": null,
+          "exitCode": null
+        }
+      ],
+      "status": "not-run"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "rabbitmq",
+    "name": "RabbitMQ",
+    "version": "4.1.4 / Erlang 27.3.4.3"
+  },
+  "capture": {
+    "id": "pending-340bd08424adb3be",
+    "status": "pending",
+    "execution": "pending",
+    "sourceSha": null,
+    "capturedAt": null,
+    "recipeSha256": "1bc8ee597f38d427d3889deb33c3b5ac62a23677872fb78dcfa6728ff2a37992",
+    "base": {
+      "image": "ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a",
+      "source": "https://hub.docker.com/_/ubuntu",
+      "indexDigest": "sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944"
+    },
+    "platform": "linux/amd64",
+    "workflowUrl": null,
+    "errors": [],
+    "note": "采集配方已就绪；未运行 Actions，不存在新环境的真实结果。"
+  },
+  "catalog": "runs/pending-340bd08424adb3be/catalog.json",
+  "examples": "runs/pending-340bd08424adb3be/examples.json",
+  "fileIndex": "runs/pending-340bd08424adb3be/file-index.json",
+  "diffIndex": "runs/pending-340bd08424adb3be/diff-index.json",
+  "artifacts": {
+    "runs/pending-340bd08424adb3be/catalog.json": {
+      "sha256": "b72bdf577af9ef300f59c5256350fda1711aece4568fdbf0c2219cc5582671a1",
+      "sizeBytes": 1097
+    },
+    "runs/pending-340bd08424adb3be/examples.json": {
+      "sha256": "075b0e5cf55640702003ae251c0fc77e71ddd7c2d06bc2f4d7a97a93a513126a",
+      "sizeBytes": 7973
+    },
+    "runs/pending-340bd08424adb3be/file-index.json": {
+      "sha256": "1d7041f8d5e77fcb568791cb386329c5b5eacbcb6e320049463cadcbf6d33d06",
+      "sizeBytes": 103
+    },
+    "runs/pending-340bd08424adb3be/diff-index.json": {
+      "sha256": "d5f28f82733bbb0cae78b7a4ba07efd3d91878aeef0751d7aa774d4ada5e599e",
+      "sizeBytes": 98
+    }
+  }
+}

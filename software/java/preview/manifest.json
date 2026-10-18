@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "java",
+    "name": "Java",
+    "version": "Temurin 25.0.3+9"
+  },
+  "capture": {
+    "id": "pending-e43c0878b24d6598",
+    "status": "pending",
+    "execution": "pending",
+    "sourceSha": null,
+    "capturedAt": null,
+    "recipeSha256": "2e6a430db14415d5072055df92bf15883d43d1c8d021f8d7b3de7e965f1aa1d9",
+    "base": {
+      "image": "ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a",
+      "source": "https://hub.docker.com/_/ubuntu",
+      "indexDigest": "sha256:c098726dd9b9733f3e885f8de0ef375206a311b0a317eadc40d347b1115fb944"
+    },
+    "platform": "linux/amd64",
+    "workflowUrl": null,
+    "errors": [],
+    "note": "采集配方已就绪；未运行 Actions，不存在新环境的真实结果。"
+  },
+  "catalog": "runs/pending-e43c0878b24d6598/catalog.json",
+  "examples": "runs/pending-e43c0878b24d6598/examples.json",
+  "fileIndex": "runs/pending-e43c0878b24d6598/file-index.json",
+  "diffIndex": "runs/pending-e43c0878b24d6598/diff-index.json",
+  "artifacts": {
+    "runs/pending-e43c0878b24d6598/catalog.json": {
+      "sha256": "c641ec1ead18c4343931d50f70b76b1dd4fd6b7ae14ab4a1a9c97729f9648abb",
+      "sizeBytes": 1758
+    },
+    "runs/pending-e43c0878b24d6598/examples.json": {
+      "sha256": "368578c3567335526fe3d66f0edcf2c03787a8351e9ae7c778709984bbe5366d",
+      "sizeBytes": 6812
+    },
+    "runs/pending-e43c0878b24d6598/file-index.json": {
+      "sha256": "3a4b2f6cc7d533f6095a6ed79a270fae96854606feebc90d6593944e505ec3eb",
+      "sizeBytes": 103
+    },
+    "runs/pending-e43c0878b24d6598/diff-index.json": {
+      "sha256": "f8a6c2bf8851e6a8715c2c8893d4b9bb59127045bded44beed745e51f1e810e5",
+      "sizeBytes": 98
+    }
+  }
+}

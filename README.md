@@ -13,14 +13,14 @@ npm run check
 npm run docs:build
 ```
 
-文档地址为 `http://127.0.0.1:5178/`。`DOCS_BASE` 支持子路径部署。
+文档地址为 `http://127.0.0.1:24045/`。`DOCS_BASE` 支持子路径部署。
 
 ## Compose 服务合集
 
-服务目录遵循 [案例目录约定](compose/README.md)，以 `meta.json` 统一声明输入、输出和运行入口。首个服务是 [Mongo Compose 与官方样例导入](compose/mongo-compose/README.md)。从 hello-docker 根目录执行：
+服务目录遵循 [案例目录约定](compose/README.md)，以 `meta.json` 统一声明输入、输出和运行入口。首个服务是 [Mongo Compose 与官方样例导入](compose/mongo-samples/README.md)。从 hello-docker 根目录执行：
 
 ```bash
-cd compose/mongo-compose
+cd compose/mongo-samples
 docker compose up -d
 docker exec -u root hello-docker-mongo bash /workspace/scripts/import-samples.sh
 docker exec hello-docker-mongo bash /workspace/scripts/run.sh
@@ -29,7 +29,7 @@ docker compose down
 
 Compose 将当前服务目录共享到容器的 `/workspace`；`scripts/` 中的 Bash 脚本按需下载 MongoDB 官方 Atlas Sample Datasets 归档、导入全部样例库并查询验证。下载文件保留在宿主机的 `data/`，该目录已被 Git 忽略；MongoDB 运行时的数据文件使用独立命名卷。Podman 使用相同文件，将命令中的 `docker` 替换为 `podman`。
 
-[MFlix 业务语句](compose/mongo-compose/README.md#mflix-业务输入与生成结果) 将官方应用的数据库调用整理为纯粹的 `input/*.js` 表达式，由统一脚本通过 mongosh 执行增删改查、索引和聚合，直接结果生成到同名 `output/*.js.json`。普通写入使用临时练习库；来源、验证及额外搜索条件单独记录在汇总中。
+[MFlix 业务语句](compose/mongo-samples/README.md#mflix-业务输入与生成结果) 将官方应用的数据库调用整理为纯粹的 `input/*.js` 表达式，由统一脚本通过 mongosh 执行增删改查、索引和聚合，直接结果生成到同名 `output/*.js.json`。普通写入使用临时练习库；来源、验证及额外搜索条件单独记录在汇总中。
 
 ## 离线工具
 
@@ -56,6 +56,14 @@ node bin/hello-docker.mjs plan --manifest scenarios/compose-http.json --json
 - 公开工具仓库可通过调用仓库的 `GITHUB_TOKEN` 读取。此模板显式检出工具源码；私有工具仓库需要具备该仓库读取权限的检出凭据，单独配置 action 共享访问不能代替 checkout 权限。不要把令牌写进源码。
 
 SQL、MQ、WASM 的后续接入路线在文档中说明。Podman 与 Kubernetes 有实验文件，首批不加入执行矩阵。
+
+## 软件命令与完整文件采集
+
+Java、MongoDB、RabbitMQ 新流程使用固定 Ubuntu 26.04 镜像，采集系统、依赖、目标软件三个阶段的全部文件元数据和普通文件 SHA-256，再核对发行包文件归属生成命令目录。命令执行案例分别保存 stdout、stderr、退出码及断言；历史结果不被替换为新环境结果。
+
+离线审阅：`node bin/software-capture.mjs plan --product java`（也支持 `mongodb`、`rabbitmq`）。针对性检查：`npm run test:software`。真实采集使用 `collect-software.yml` 手动 Actions，只上传元数据和展示包，不自动提交或推送。
+
+主数据与不可覆盖历史保存在本项目；三个独立站点只导入校验后的展示包。完整字段、数据协议、固定发行版本、归档与导入命令见[软件采集文档](docs/support/software-capture.md)。`software/*/preview/` 为明确待采集的配方预览，里面没有伪造输出或文件元数据。
 
 ## 目录
 

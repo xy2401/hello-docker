@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "captureId": "pending-e43c0878b24d6598",
+  "product": {
+    "id": "java",
+    "name": "Java",
+    "version": "Temurin 25.0.3+9"
+  },
+  "commands": [],
+  "plannedCommands": [
+    {
+      "id": "planned:java",
+      "name": "java",
+      "path": null,
+      "purpose": "运行 Java 类或 JAR；查看运行时版本。",
+      "category": "运行",
+      "verified": false
+    },
+    {
+      "id": "planned:javac",
+      "name": "javac",
+      "path": null,
+      "purpose": "将 Java 源文件编译为 class 文件。",
+      "category": "编译",
+      "verified": false
+    },
+    {
+      "id": "planned:jar",
+      "name": "jar",
+      "path": null,
+      "purpose": "创建、查看和解包 JAR 归档。",
+      "category": "打包",
+      "verified": false
+    },
+    {
+      "id": "planned:javap",
+      "name": "javap",
+      "path": null,
+      "purpose": "查看 class 的结构和字节码。",
+      "category": "分析",
+      "verified": false
+    },
+    {
+      "id": "planned:jdeps",
+      "name": "jdeps",
+      "path": null,
+      "purpose": "分析类与模块依赖。",
+      "category": "分析",
+      "verified": false
+    },
+    {
+      "id": "planned:jcmd",
+      "name": "jcmd",
+      "path": null,
+      "purpose": "向运行中的 JVM 发送诊断命令。",
+      "category": "诊断",
+      "verified": false
+    },
+    {
+      "id": "planned:jshell",
+      "name": "jshell",
+      "path": null,
+      "purpose": "交互执行 Java 表达式。",
+      "category": "交互",
+      "verified": false
+    },
+    {
+      "id": "planned:jlink",
+      "name": "jlink",
+      "path": null,
+      "purpose": "生成定制 Java 运行时。",
+      "category": "打包",
+      "verified": false
+    }
+  ]
+}

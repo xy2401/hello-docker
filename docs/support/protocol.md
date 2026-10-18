@@ -15,7 +15,7 @@
 | `assertions` | stdout/stderr 的 `includes` 或 `equals` 断言 |
 | `output` | 指定证据目录与生成页面 |
 
-查看真实示例可进入[复现助手](/playground/)。命令使用 argv 数组，不通过主机 Shell 拼接执行。版本 1 有意限制挂载和 Compose 资源声明；扩展服务能力需要新增明确协议与测试。
+查看真实示例可进入[🧪 实验台](/playground/)。命令使用 argv 数组，不通过主机 Shell 拼接执行。版本 1 有意限制挂载和 Compose 资源声明；扩展服务能力需要新增明确协议与测试。
 
 ## 成功条件
 

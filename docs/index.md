@@ -13,7 +13,7 @@ hero:
       text: 理解容器基础
       link: /concepts/
     - theme: alt
-      text: 配置与复现助手
+      text: 🧪 实验台
       link: /playground/
     - theme: alt
       text: 公共工具与接入
@@ -51,6 +51,8 @@ features:
 | 把程序放进可复现环境 | [Docker](/docker/) | [镜像构建](/docker/build)、[Compose](/docker/compose)、[Podman](/podman/) |
 | 理解多机器上的应用管理 | [Kubernetes](/kubernetes/) | [工作负载](/kubernetes/workloads)、[网络与存储](/kubernetes/network-storage)、[最小实验](/kubernetes/lab) |
 
+比较工具职责和应用配置方式，进入 [⚖️ 对比矩阵](/matrix/)；查阅官方文档、协议与验证入口，进入 [📚 参考资料](/reference/)。
+
 ## Hello 项目的公共支持
 
 Hello Docker 把通用容器操作、镜像锁定和证据格式沉淀为公共工具。语言、数据库、消息队列的业务断言继续由各项目负责；Hello WASM 继续维护转换工具链与浏览器运行时资产。
@@ -59,6 +61,6 @@ Hello Docker 把通用容器操作、镜像锁定和证据格式沉淀为公共�
 
 ## 当前验证状态
 
-配置与复现助手可以生成命令、展示源文件和读取已有证据。实际容器实验通过手动 Actions 工作流执行；未采集的场景显示待验证。只有真实运行与断言通过，结果才会自动回写到文档。
+🧪 实验台可以生成命令、展示源文件和读取已有证据。实际容器实验通过手动 Actions 工作流执行；未采集的场景显示待验证。只有真实运行与断言通过，结果才会自动回写到文档。
 
 [查看 Actions 验证证据](/evidence/) · [了解执行与回写规则](/support/actions)

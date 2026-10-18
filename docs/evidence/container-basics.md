@@ -10,4 +10,4 @@
 
 ## 操作入口
 
-[配置与复现助手](/playground/)提供清单与命令文本。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `container-basics` 后执行并自动回写本页。
+[🧪 实验台](/playground/)提供清单与命令文本。[手动工作流](https://github.com/xy2401/hello-docker/actions/workflows/verify-docker.yml)选择 `container-basics` 后执行并自动回写本页。
