@@ -15,6 +15,14 @@ npm run docs:build
 
 文档地址为 `http://127.0.0.1:24045/`。`DOCS_BASE` 支持子路径部署。
 
+## Cloudflare Workers 部署
+
+仓库根目录的 [wrangler.jsonc](wrangler.jsonc) 声明了构建命令和静态资源目录。Wrangler 在部署阶段执行 `npm run docs:build`，随后发布 `docs/.vitepress/dist`；页面使用静态 HTML 路由和 VitePress 的 404 页面。
+
+在 Cloudflare Workers 中导入本仓库，Worker 名称使用 `hello-docker`（与配置中的 `name` 一致），根目录使用仓库根目录，**构建命令留空**，部署命令保留默认的 `npx wrangler deploy`。构建环境使用 Node.js 22.16+，站点默认部署到域名根路径 `/`，无需设置 `DOCS_BASE`。
+
+构建命令由 Wrangler 执行，不依赖控制台自动填充构建命令字段。配置方式见 [Wrangler 自定义构建](https://developers.cloudflare.com/workers/wrangler/custom-builds/)和 [Workers 静态站点路由](https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/)。
+
 ## Compose 服务合集
 
 服务目录遵循 [案例目录约定](compose/README.md)，以 `meta.json` 统一声明输入、输出和运行入口。首个服务是 [Mongo Compose 与官方样例导入](compose/mongo-samples/README.md)。从 hello-docker 根目录执行：
