@@ -1,0 +1,9 @@
+services:
+  capture:
+    image: ${CAPTURE_IMAGE:?Set CAPTURE_IMAGE}
+    platform: linux/amd64
+    pull_policy: never
+    network_mode: none
+    volumes:
+      - ${CAPTURE_DIR:?Set CAPTURE_DIR}:/capture
+    entrypoint: [bash]

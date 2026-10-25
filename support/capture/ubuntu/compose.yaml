@@ -1,0 +1,9 @@
+services:
+  ubuntu:
+    image: ${BASE_IMAGE:-localhost/hello-capture/ubuntu:26.04}
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UBUNTU_IMAGE: ${UBUNTU_IMAGE:-docker.io/library/ubuntu:26.04@sha256:42527649dbc4f9197a6073f426f488cbff0e9cc9f2afce32d91c383e4875634a}

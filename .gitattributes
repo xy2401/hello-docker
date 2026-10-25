@@ -1,4 +1,6 @@
 *.sh text eol=lf
+/scripts/capture/** text eol=lf
+/support/capture/** text eol=lf
 /compose/mongo-samples/input/* text eol=lf
 /compose/mongo-samples/scripts/* text eol=lf
 /compose/mongo-samples/source.json text eol=lf
