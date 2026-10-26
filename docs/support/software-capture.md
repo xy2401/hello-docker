@@ -51,7 +51,7 @@ bash scripts/capture/run.sh \
 
 每次要求全新目录，旧批次不覆盖。仅挂载一个读写目录 `workspace:/capture`：`scripts/` 保存本批脚本副本，`results/` 保存原始输出，`work/` 保存案例临时数据。建议采集目录放在 WSL 的 Linux 文件系统，源代码可继续保存在 Windows 工作区。扫描与案例使用不同的新容器；采集容器禁用外网，服务案例通过回环地址通信。
 
-完整参数及验证命令见[公共采集脚本说明](https://github.com/xy2401/hello-docker/blob/codex/hello-docker/scripts/capture/README.md)。
+完整参数及验证命令见[公共采集脚本说明](https://github.com/xy2401/hello-docker/blob/main/scripts/capture/README.md)。
 
 ## 完整清单、差分和案例
 
